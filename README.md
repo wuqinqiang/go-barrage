@@ -40,7 +40,7 @@ go run main.go
 
 **访问页面，注册账户登录之后，来到Room**
 
-​    <img src="https://github.com/wuqinqiang/go-barrage/master/chat.png">
+​    <img src="https://github.com/wuqinqiang/go-barrage/blob/master/chat.png">
 
 
 

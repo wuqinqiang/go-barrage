@@ -19,6 +19,7 @@
     </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         var wsServer
         var websocket
@@ -49,7 +50,7 @@
 
         $("#connect").click(function (evt) {
             if(websocket !=null){
-                alert("服务已连接，请勿重复连接")
+                swal("已连接成功，请勿重复连接!", "继续", "error");
                 return
             }
             wsServer = 'ws://localhost:8080/ws';
@@ -57,7 +58,12 @@
             websocket = new WebSocket(wsServer);
 
             websocket.onopen = function (evt) {
-                console.log('连接成功');
+                $("#connect").hide();
+
+                swal("连接成功!", "开始聊天把!", "success", {
+                    button: "继续!",
+                });
+
             };
 
             websocket.onclose = function (evt) {
