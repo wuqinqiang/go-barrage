@@ -1,0 +1,121 @@
+.box {
+    width: 800px;
+    height: 500px;
+    margin: 0 auto;
+}
+
+.barrage-container-wrap {
+    width: 100%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+    background: url('/static/img/1.jpg') no-repeat;
+    background-size: 100% 100%;
+}
+
+.barrage-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 30px;
+    cursor: default;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.barrage-item {
+    position: absolute;
+    top: 0;
+    left: 100%;
+    white-space: nowrap;
+    cursor: pointer;
+    color: #fff;
+}
+
+.barrage-item .barrage-tip {
+    display: none;
+    position: absolute;
+    top: -26px;
+    padding: 7px 15px;
+    line-height: 12px;
+    font-size: 30px;
+    color: #f20606;
+    background-color: #fff;
+    white-space: nowrap;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    -webkit-box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, .1);
+    -webkit-transform-origin: 15px 100%;
+    -ms-transform-origin: 15px 100%;
+    transform-origin: 15px 100%;
+    webkit-animation: tipScale cubic-bezier(.22, .58, .12, .98) .4s;
+    animation: tipScale cubic-bezier(.22, .58, .12, .98) .4s;
+}
+
+.send-wrap {
+    margin-top: 20px;
+}
+
+.input {
+    width: 300px;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    -webkit-appearance: none;
+    border-radius: 5px;
+    padding: 0;
+    padding-left: 10px;
+}
+
+.send-btn {
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background: #93d0ea;
+    text-shadow: 1px 1px 1px #333;
+    border-radius: 5px;
+    margin: 0 20px 20px 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 5px 15px;
+}
+
+.send-btn1 {
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background: #93d0ea;
+    text-shadow: 1px 1px 1px #333;
+    border-radius: 5px;
+    margin: 0 20px 20px 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 5px 15px;
+}
+
+.send-all {
+    height: 38px;
+    line-height: 38px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background: #93d0ea;
+    text-shadow: 1px 1px 1px #333;
+    border-radius: 5px;
+    margin: 0 20px 20px 0;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    padding: 5px 15px;
+}
+

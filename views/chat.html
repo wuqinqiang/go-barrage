@@ -1,0 +1,240 @@
+{{ define "content" }}
+    <html lang="en">
+    <head>
+        <link href="/static/css/chat.css" rel="stylesheet">
+    </head>
+    <body>
+    <div class="box">
+        <div class="barrage-container-wrap clearfix">
+            <div class="barrage-container">
+            </div>
+        </div>
+            <div class="send-wrap">
+                <div class="send-wrap">
+                    <input type="text" class="input" placeholder="弹幕发送">
+                    <span class="send-btn1" type="button" id="connect">连接</span>
+                    <span class="send-btn">发送弹幕</span>
+                </div>
+            </div>
+    </div>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        var wsServer
+        var websocket
+        //初始弹幕数据
+        let barrageArray = [
+        ];
+
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8080/chat/messages',//被请求的API接口地址
+            dataType: 'json',
+            success: function (data) {
+
+                for (let i=0;i<data.length;i++){
+                    barrageArray.push({
+                        url:'用户头像',
+                        text:data[i].UserName+"说:"+data[i].Message,
+                        level: 2
+                    })
+                }
+                /*******初始化事件**********/
+                //系统数据
+                barrageArray.forEach(function (item, index) {
+                    createBarrage(item.text, false);
+                });
+            },
+        });
+
+        $("#connect").click(function (evt) {
+            if(websocket !=null){
+                alert("服务已连接，请勿重复连接")
+                return
+            }
+            wsServer = 'ws://localhost:8080/ws';
+
+            websocket = new WebSocket(wsServer);
+
+            websocket.onopen = function (evt) {
+                console.log('连接成功');
+            };
+
+            websocket.onclose = function (evt) {
+                console.log("Disconnected");
+            };
+
+            websocket.onmessage = function (evt) {
+                // 处理接收的消息
+                let param = JSON.parse(evt.data);
+                createBarrage(param.user_name+"说:"+param.message, true);
+            };
+
+            websocket.onerror = function (evt, e) {
+                console.log('Error occured: ' + evt.data);
+            };
+
+        });
+
+
+        var barrageColorArray = [
+            '#548B54', '#CD1076', '#EE2C2C', '#FF3030', '#9933FF', '#FFFF99', '#00CD00', '#008B8B', '#FFFF66'
+        ];
+        var barrageTipWidth = 50; //提示语的长度
+
+        var barrageBoxWrap = document.querySelector('.barrage-container-wrap');
+        ;
+        var barrageBox = document.querySelector('.barrage-container');
+        var inputBox = document.querySelector('.input');
+        var sendBtn = document.querySelector('.send-btn');
+        var sendAll = document.querySelector('.send-all');
+
+
+        //容器的宽高度
+        var barrageWidth = ~~window.getComputedStyle(barrageBoxWrap).width.replace('px', '');
+        var barrageHeight = ~~window.getComputedStyle(barrageBoxWrap).height.replace('px', '');
+
+        //发送
+        function sendMsg(type) {
+
+            var inputValue = inputBox.value;
+            inputValue.replace(/\ +/g, "");
+
+            if (inputValue.length <= 0) {
+                alert('请输入内容');
+                return false;
+            }
+
+            var data = {'type': type, 'message': inputValue};
+
+            websocket.send(JSON.stringify(data));
+            //生成弹幕
+           // createBarrage(inputValue, true);
+            inputBox.value = '';
+        }
+
+
+        //创建弹幕
+        function createBarrage(msg, isSendMsg) {
+            var divNode = document.createElement('div');
+            var spanNode = document.createElement('span');
+
+            divNode.innerHTML = msg;
+            divNode.classList.add('barrage-item');
+            barrageBox.appendChild(divNode);
+
+            spanNode.innerHTML = '举报';
+            spanNode.classList.add('barrage-tip');
+            divNode.appendChild(spanNode);
+
+            barrageOffsetLeft = getRandom(barrageWidth, barrageWidth * 2);
+            barrageOffsetLeft = isSendMsg ? barrageWidth : barrageOffsetLeft
+            barrageOffsetTop = getRandom(10, barrageHeight - 10);
+            barrageColor = barrageColorArray[Math.floor(Math.random() * (barrageColorArray.length))];
+
+            //执行初始化滚动
+            initBarrage.call(divNode, {
+                left: barrageOffsetLeft,
+                top: barrageOffsetTop,
+                color: barrageColor
+            });
+        }
+
+        //初始化弹幕移动(速度，延迟)
+        function initBarrage(obj) {
+            //初始化
+            obj.top = obj.top || 0;
+            obj.class = obj.color || '#fff';
+            this.style.left = obj.left + 'px';
+            this.style.top = obj.top + 'px';
+            this.style.color = obj.color;
+
+            //添加属性
+            this.distance = 0;
+            this.width = ~~window.getComputedStyle(this).width.replace('px', '');
+            this.offsetLeft = obj.left;
+            this.timer = null;
+
+            //弹幕子节点
+            var barrageChileNode = this.children[0];
+            barrageChileNode.style.left = (this.width - barrageTipWidth) / 2 + 'px';
+
+            //运动
+            barrageAnimate(this);
+
+            //停止
+            this.onmouseenter = function () {
+                barrageChileNode.style.display = 'block';
+                cancelAnimationFrame(this.timer);
+            };
+
+            this.onmouseleave = function () {
+                barrageChileNode.style.display = 'none';
+                barrageAnimate(this);
+            };
+
+            //举报
+            barrageChileNode.onclick = function () {
+                alert('举报成功');
+            }
+        }
+
+        //弹幕动画
+        function barrageAnimate(obj) {
+            move(obj);
+
+            if (Math.abs(obj.distance) < obj.width + obj.offsetLeft) {
+                obj.timer = requestAnimationFrame(function () {
+                    barrageAnimate(obj);
+                });
+            } else {
+                cancelAnimationFrame(obj.timer);
+                //删除节点
+                obj.parentNode.removeChild(obj);
+            }
+        }
+
+        //移动
+        function move(obj) {
+            obj.distance--;
+            obj.style.transform = 'translateX(' + obj.distance + 'px)';
+            obj.style.webkitTransform = 'translateX(' + obj.distance + 'px)';
+        }
+
+        //随机获取高度
+        function getRandom(start, end) {
+            return start + (Math.random() * (end - start));
+        }
+
+
+        // /*******初始化事件**********/
+        // //系统数据
+        // barrageArray.forEach(function (item, index) {
+        //     createBarrage(item.text, false);
+        // });
+
+        //点击发送
+        sendBtn.onclick = function () {
+            if (websocket == null) {
+                alert("请先连接服务器")
+                return
+            }
+            sendMsg(2)
+        };   //点击发送
+
+        // sendAll.onclick = function () {
+        //     sendMsg(3);
+        // }
+
+        //回车
+        // inputBox.onkeydown = function (e) {
+        //     e = e || window.event;
+        //     if (e.keyCode == 13) {
+        //         sendMsg()
+        //     }
+        // }
+
+
+    </script>
+    </html>
+{{end}}
