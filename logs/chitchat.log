@@ -14,3 +14,4 @@ ERROR 2020/04/18 14:08:55 helper.go:75: websocket: close 1006 (abnormal closure)
 ERROR 2020/04/18 14:15:41 helper.go:75: websocket: close 1006 (abnormal closure): unexpected EOF
 ERROR 2020/04/18 14:18:13 helper.go:75: websocket: close 1001 (going away)
 ERROR 2020/04/18 14:19:40 helper.go:75: websocket: close 1001 (going away)
+WARNNIN 2020/04/18 14:34:28 helper.go:80: <nil> Failed to get cookie
