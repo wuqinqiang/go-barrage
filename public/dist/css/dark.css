@@ -1,0 +1,371 @@
+/* Body
+====================*/
+body {
+	background: #2b2a2e;
+}
+a {
+	color: #fff;
+}
+p {
+	color: rgba(255,255,255,.45);
+}
+hr {
+	border-color: rgba(255,255,255,.03);
+}
+/* Forms
+====================*/
+.form-group > label {
+	color: #fff;
+}
+.form-control {
+	background: #38373a;
+	color: rgba(255,255,255,.45);
+}
+.form-control:focus {
+	background: #38373a;
+	color: rgba(255,255,255,.45);
+}
+.form-control::-webkit-input-placeholder {
+	color: rgba(255,255,255,.45);
+}
+.form-control::-moz-placeholder {
+	color: rgba(255,255,255,.45);
+}
+.form-control:-ms-input-placeholder {
+	color: rgba(255,255,255,.45);
+}
+.form-control::-ms-input-placeholder {
+	color: rgba(255,255,255,.45);
+}
+.form-control::placeholder {
+	color: rgba(255,255,255,.45);
+}
+input[type="search"]::-webkit-search-cancel-button {
+	background: url(../img/clear-2.svg);
+}
+/* Buttons
+====================*/
+.round {
+	background: rgba(255,255,255,.05);
+}
+.round .eva {
+	fill: rgba(255,255,255,.45);
+}
+/* General
+====================*/
+.avatars img {
+	border-color: #353437;
+}
+/* Upload */
+.upload span {
+	background: rgba(255,255,255,.03);
+	color: rgba(255,255,255,.45);
+	border-color: rgba(255,255,255,.08);
+}
+.upload span:hover {
+	background: rgba(255,255,255,.03);
+	opacity: 0.9;
+}
+/* Status */
+.status.offline {
+	fill: #8b8a8c;
+	stroke: #8b8a8c;
+}
+/* Dropdown */
+.dropdown-menu {
+	background: #2b2a2e;
+	box-shadow: 0 0 30px rgba(0,0,0,.03);
+}
+.dropdown-item {
+	color: rgba(255,255,255,.45);
+}
+.dropdown-item:hover {
+	background: rgba(255,255,255,.03);
+	color: rgba(255,255,255,.45);
+	border-radius: 6px;
+}
+.dropdown-item:focus {
+	background: rgba(255,255,255,.03);
+	color: rgba(255,255,255,.45);
+}
+.dropdown-item.active, .dropdown-item:active {
+	background: #007bff;
+	color: #fff;
+}
+.dropdown-item.active .eva, .dropdown-item:active .eva {
+	fill: #fff!important;
+}
+/* Switch */
+.switch .slider {
+	background-color: rgba(255,255,255,.05);
+}
+/* 1. Navigation
+====================*/
+.navigation {
+	background: #2b2a2e;
+}
+.navigation  ul > li > a .eva {
+	fill: rgba(255,255,255,.45);
+}
+.navigation ul > li > a.active .eva {
+	fill: #007bff;
+}
+.navigation ul > li > a:hover .eva {
+	fill: #007bff;
+}
+.navigation .btn .eva-bulb {
+	fill: #007bff;
+}
+.navigation .btn .eva-bulb:hover {
+	fill: rgba(255,255,255,.45);
+}
+/* 2. Sidebar
+====================*/
+.sidebar {
+	background: #2e2d31;
+}
+.sidebar .top form .eva {
+	fill: rgba(255,255,255,.45);
+}
+.sidebar .top .nav {
+	background: #38373a;
+}
+.sidebar .top .nav li .active {
+	background: rgba(255,255,255,.05);
+	color: #fff;
+}
+.sidebar .top .nav li a {
+	color: rgba(255,255,255,.45);
+}
+.sidebar .middle h4 {
+	color: #fff;
+}
+/* 3. Discussions
+====================*/
+.discussions > li > a {
+	border-color: rgba(255,255,255,.03);
+}
+.discussions > li > a.active p {
+	color: #fff;
+}
+.discussions > li > a h5 {
+	color: #fff;
+}
+.discussions > li > a span {
+	color: rgba(255,255,255,.45);
+}
+/* 4. Users
+====================*/
+.users > li > a {
+	border-color: rgba(255,255,255,.03);
+}
+.users > li h5 {
+	color: #fff;
+}
+.users > li span {
+	color: rgba(255,255,255,.45);
+}
+.users > li .eva-person {
+	fill: rgba(255,255,255,.45);
+}
+/* 5. Notifications
+====================*/
+.notifications > li {
+	border-color: rgba(255,255,255,.03);
+}
+.notifications > li.active p {
+	color: rgba(255,255,255,.45);
+}
+/* 6. Settings
+====================*/
+.settings .user h5 {
+	color: #fff;
+}
+.settings .user span {
+	color: rgba(255,255,255,.45);
+}
+.settings h4 {
+	color: #fff;
+	border-color: rgba(255,255,255,.03);
+}
+.settings > ul > li {
+	border-color: rgba(255,255,255,.03);
+}
+.settings > ul > li > .headline h5 {
+	color: #fff;
+}
+.settings > ul > li > .headline .eva {
+	fill: rgba(255,255,255,.45);
+}
+.settings .content .inside {
+	border-color: rgba(255,255,255,.03);
+}
+/* Options */
+.settings .options > li + li {
+	border-color: rgba(255,255,255,.03);
+}
+.settings .options > li .headline h5 {
+	color: #fff;
+}
+/* Integrations */
+.settings .integrations > li {
+	background: rgba(255,255,255,.03);
+	box-shadow: none;
+}
+.settings .integrations > li .content > span {
+	color: rgba(255,255,255,.45);
+}
+.settings .integrations > li .headline h5 {
+	color: #fff;
+}
+/* 7. Chat
+====================*/
+.chat {
+	background: #2f2e32;
+}
+/* Top */
+.chat .item .top {
+	border-color: rgba(255,255,255,.03);
+}
+.chat .item .top h5 {
+	color: #fff;
+}
+.chat .item .top span {
+	color: rgba(255,255,255,.45);
+}
+.chat .item .top ul > li .eva {
+	fill: rgba(255,255,255,.45);
+}
+/* Middle */
+.chat .item .middle ul > li span {
+	color: rgba(255,255,255,.45);
+}
+.chat .item .middle ul > li span .eva {
+	fill: rgba(255,255,255,.45);
+}
+.chat .item .middle ul > li .attachment span {
+	color: #fff;
+}
+.chat .item .middle ul > li:nth-of-type(odd) .bubble {
+	background: #38373a;
+}
+.chat .item .middle ul > li:nth-of-type(odd) p {
+	color: rgba(255,255,255,.45);
+}
+.chat .item .middle ul > li:nth-of-type(odd) .attachment span {
+	color: rgba(255,255,255,.45);
+}
+/* Bottom */
+.chat .item .bottom {
+	border-color: rgba(255,255,255,.03);
+}
+.chat .item .bottom .prepend .eva {
+	fill: rgba(255,255,255,.45);
+}
+/* 8. Utility
+====================*/
+.utility {
+	background: #2e2d31;
+}
+.utility .close .eva {
+	fill: rgba(255,255,255,.45);
+}
+.utility .nav {
+	background: #38373a;
+}
+.utility .nav li .active {
+	background: rgba(255,255,255,.05);
+	color: #fff;
+}
+.utility .nav li a {
+	color: rgba(255,255,255,.45);
+}
+.utility .primary {
+	background: #38373a;
+	color: rgba(255,255,255,.45);
+}
+.utility h4 {
+	color: #fff;
+}
+.utility .users > li {
+	border-color: rgba(255,255,255,.03);
+}
+.utility .users > li .eva-more-vertical {
+	fill: rgba(255,255,255,.45);
+}
+/* 9. Files
+====================*/
+.files > li {
+	background: rgba(255,255,255,.03);
+	box-shadow: none;
+}
+.files > li .avatars .eva {
+	fill: rgba(255,255,255,.45);
+}
+.files > li span {
+	color: rgba(255,255,255,.45);
+}
+.files > li .eva-more-vertical {
+	fill: rgba(255,255,255,.45);
+}
+/* 10. Modal
+====================*/
+.modal-content {
+	background: #2f2e32;
+}
+.modal-body {
+	background: #2f2e32;
+}
+.modal-body .nav {
+	background: #38373a;
+}
+.modal-body .nav li .active {
+	background: rgba(255,255,255,.05);
+	color: #fff;
+}
+.modal-body .nav li a {
+	color: rgba(255,255,255,.45);
+}
+.modal-body h5 {
+	color: #fff;
+}
+.modal-body h4 {
+	color: #fff;
+}
+.modal-body hr {
+	border-color: rgba(255,255,255,.03);
+}
+.modal-body .search .eva {
+	fill: rgba(255,255,255,.45);
+}
+.modal-body .users > li {
+	border-color: rgba(255,255,255,.03);
+}
+.modal-body .custom-control-label::before {
+	background: #38373a;
+}
+.modal-footer {
+	background: #2f2e32;
+}
+/* 11. Sign In, Sign Up, Forgot Password
+==========================================*/
+.sign .item {
+	background: #2e2d31;
+	box-shadow: none;
+}
+.sign .item h2 {
+	color: #fff;
+}
+.sign .item .eva {
+	fill: rgba(255,255,255,.45);
+}
+.sign .item span {
+	color: rgba(255,255,255,.45);
+}
+/* Viewports
+====================*/
+@media (min-width: 992px) and (max-width: 1300px) {
+	.utility {
+		border-color: rgba(255,255,255,.03);
+	}
+}

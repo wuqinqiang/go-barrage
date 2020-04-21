@@ -9,6 +9,7 @@
             <div class="barrage-container">
             </div>
         </div>
+
             <div class="send-wrap">
                 <div class="send-wrap">
                     <input type="text" class="input" placeholder="弹幕发送">
@@ -40,8 +41,7 @@
                         level: 2
                     })
                 }
-                /*******初始化事件**********/
-                //系统数据
+                //初始化数据
                 barrageArray.forEach(function (item, index) {
                     createBarrage(item.text, false);
                 });
@@ -60,7 +60,7 @@
             websocket.onopen = function (evt) {
                 $("#connect").hide();
 
-                swal("连接成功!", "开始聊天把!", "success", {
+                swal("连接成功!", "上车了!", "success", {
                     button: "继续!",
                 });
 
@@ -107,7 +107,7 @@
             inputValue.replace(/\ +/g, "");
 
             if (inputValue.length <= 0) {
-                alert('请输入内容');
+                swal("请输入发送内容!", "友情提示，请勿开车!", "info");
                 return false;
             }
 
@@ -181,7 +181,7 @@
 
             //举报
             barrageChileNode.onclick = function () {
-                alert('举报成功');
+                swal("举报成功!", "然而并没有什么软用!", "success");
             }
         }
 
@@ -212,33 +212,14 @@
             return start + (Math.random() * (end - start));
         }
 
-
-        // /*******初始化事件**********/
-        // //系统数据
-        // barrageArray.forEach(function (item, index) {
-        //     createBarrage(item.text, false);
-        // });
-
         //点击发送
         sendBtn.onclick = function () {
             if (websocket == null) {
-                alert("请先连接服务器")
+                swal("请先连接服务器!", "连接继续!", "error");
                 return
             }
             sendMsg(2)
         };   //点击发送
-
-        // sendAll.onclick = function () {
-        //     sendMsg(3);
-        // }
-
-        //回车
-        // inputBox.onkeydown = function (e) {
-        //     e = e || window.event;
-        //     if (e.keyCode == 13) {
-        //         sendMsg()
-        //     }
-        // }
 
 
     </script>

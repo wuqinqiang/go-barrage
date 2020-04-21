@@ -109,4 +109,11 @@ var webRouters = WebRouters{
 		"/chat/messages",
 		handlers.MessageAll,
 	},
+	//单聊
+	{
+		"chatIndex",
+		"GET",
+		"/chat/index",
+		handlers.ChatIndex,
+	},
 }
