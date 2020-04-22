@@ -10,10 +10,12 @@ import (
 )
 
 type Msg struct {
-	Message   string    `json:"message"`
-	UserName  string    `json:"user_name"`
-	Type      int       `json:"type"`
-	CreatedAt time.Time `json:"created_at"`
+	Message     string    `json:"message"`
+	UserName    string    `json:"user_name"`
+	Type        int       `json:"type"`
+	CreatedAt   time.Time `json:"created_at"`
+	ContentType int       `json:"content_type"`
+	To          int       `json:"to"`
 }
 
 var clients = make(map[*websocket.Conn]bool) //ws客户端
@@ -34,6 +36,7 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 		var msg Msg
 		//读取信息
 		_, p, err := conn.ReadMessage()
+
 		if err != nil {
 			delete(clients, conn) //删除掉这个没用的客户端连接
 			danger(err.Error())
@@ -45,18 +48,30 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 			danger(err.Error())
 			break
 		}
-
 		user, err := sess.User()
 		//记录发送消息
 
-		if _, err := user.CreateMessage(RemoteIP(r), msg.Message, msg.Type); err != nil {
-			danger(err.Error())
-			break
-		}
-		msg.UserName = user.Name
-		msg.CreatedAt = time.Now()
+		if msg.Type == 5 { //是弹幕发送
+			if _, err := user.CreateMessage(RemoteIP(r), msg.Message, msg.Type); err != nil {
+				danger(err.Error())
+				break
+			}
+			msg.UserName = user.Name
+			msg.CreatedAt = time.Now()
 
-		messageChannel <- msg
+			messageChannel <- msg
+		} else { //单聊或者群聊消息
+			chat, err := user.CreateChatMessage(msg.Message, msg.To, msg.Type, msg.ContentType)
+			if err != nil {
+				danger(err.Error())
+				break
+			}
+			if err := models.CreateLastRecord(user.Name,chat); err != nil {
+				danger(err.Error())
+				break
+			}
+			//找到次客户端发送消息
+		}
 	}
 }
 

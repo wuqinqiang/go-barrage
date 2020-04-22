@@ -99,7 +99,7 @@ func Users() (users []User, err error) {
 	}
 	for rows.Next() {
 		user := User{}
-		if err = rows.Scan(&user.Id, &user.Uuid, &user.Name,&user.Email, &user.Password, &user.CreatedAt); err != nil {
+		if err = rows.Scan(&user.Id, &user.Uuid, &user.Name, &user.Email, &user.Password, &user.CreatedAt); err != nil {
 			return
 		}
 		users = append(users, user)
@@ -168,8 +168,8 @@ func (user *User) CreatePost(conv Thread, body string) (post Post, err error) {
 	return
 }
 
-//发送消息
-func (user *User) CreateMessage(ip string, content string,types int) (message Message, err error) {
+//发送弹幕消息
+func (user *User) CreateMessage(ip string, content string, types int) (message Message, err error) {
 	statement := "insert into messages(uuid,message,user_name,type,ip,user_id,created_at) values(?,?,?,?,?,?,?)"
 	stmtin, err := Db.Prepare(statement)
 	if err != nil {
@@ -179,13 +179,77 @@ func (user *User) CreateMessage(ip string, content string,types int) (message Me
 	uuid := createUUID()
 	defer stmtin.Close()
 
-	stmtin.Exec(uuid, content, user.Name, types,ip, user.Id, time.Now())
+	stmtin.Exec(uuid, content, user.Name, types, ip, user.Id, time.Now())
 	stmtout, err := Db.Prepare("select * from messages where uuid=?")
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
 	defer stmtout.Close()
-	err = stmtout.QueryRow(uuid).Scan(&message.Id, &message.Uuid, &message.Message,&message.UserName, &message.Type,&message.IP, &message.UserId, &message.CreatedAt)
+	err = stmtout.QueryRow(uuid).Scan(&message.Id, &message.Uuid, &message.Message, &message.UserName, &message.Type, &message.IP, &message.UserId, &message.CreatedAt)
+	return
+}
+
+//用户聊天记录列表
+func (user *User) GetReCordFriends() (records []LastRecord) {
+	rows, err := Db.Query("select * from last_records where from_id =? or to_id =? order by send_time desc ", user.Id, user.Id)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	for rows.Next() {
+		last := LastRecord{}
+		if err = rows.Scan(&last.Id, &last.SendTime, &last.FromId, &last.ToId, &last.Content, &last.Type, &last.SendName, &last.ContentType); err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+		records = append(records, last)
+	}
+	rows.Close()
+	return
+}
+
+//用户好友列表
+func (user *User) GetUserFriends() (friends []Friend) {
+	rows, err := Db.Query("select * from user_friends where user_id=?", user.Id)
+	if err != nil {
+		fmt.Println("can not find friend")
+		return
+	}
+	for rows.Next() {
+		friend := Friend{}
+		if err := rows.Scan(&friend.Id, &friend.UserId, &friend.FriendId, &friend.FriendName, &friend.UnreadMessage); err != nil {
+			fmt.Println("can not find friend")
+			return
+		}
+		friends = append(friends, friend)
+	}
+	return
+}
+
+//创建聊天消息
+/**
+to_id 发送对象 send_type 1单聊2群聊 content_type 1文本2文件。。。
+*/
+func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) (chatRecord ChatRecord, err error) {
+	statement := "insert into chat_records (uuid,send_time,content,from_id,to_id,type,content_type) value(?,?,?,?,?,?,?)"
+	stmin, err := Db.Prepare(statement)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	defer stmin.Close()
+	uuid := createUUID()
+	stmin.Exec(uuid, time.Now(), message, user.Id, to_id, send_type, content_tpye)
+	stmout,err:=Db.Prepare("select * from chat_records where uuid=?")
+	if err !=nil{
+		fmt.Println(err.Error())
+		return
+	}
+
+
+	defer stmout.Close()
+	stmout.QueryRow(uuid).Scan(&chatRecord.Id,&chatRecord.Uuid,&chatRecord.SendTime,
+		&chatRecord.Content,&chatRecord.FromId,&chatRecord.ToId,&chatRecord.Type,&chatRecord.ContentType)
 	return
 }
