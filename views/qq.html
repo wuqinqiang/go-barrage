@@ -534,6 +534,7 @@
     <!-- End of Compose -->
 </div>
 <!-- Layout -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="/static/dist/js/vendor/jquery-slim.min.js"></script>
 <script src="/static/dist/js/vendor/popper.min.js"></script>
 <script src="/static/dist/js/vendor/feather.min.js"></script>
@@ -550,6 +551,7 @@
     var wsServer
     var websocket
     var currentId
+
     var sendId=1 //发送对象
     wsServer = 'ws://localhost:8080/ws';
 
@@ -611,7 +613,19 @@
         var from_id = $(obj).parents("li").find("#from_id").val();
         var to_id = $(obj).parents("li").find("#to_id").val();
         sendId = currentId == from_id ? to_id : from_id;
+
+            //查看消息记录
+            $.ajax({
+                type: "GET",
+                url: 'http://localhost:8080/chat/chatAll',//被请求的API接口地址
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                },
+            });
+
     }
+
 
     //发送消息
     function wsSend(info) {

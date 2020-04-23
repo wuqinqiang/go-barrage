@@ -1,9 +1,11 @@
 package handlers
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/wuqinqiang/chitchat/models"
 	"html/template"
+	"io"
 	"net/http"
 )
 
@@ -38,4 +40,26 @@ func ChatIndex(w http.ResponseWriter, r *http.Request) {
 		tem.Execute(w, chatInfo)
 	}
 
+}
+
+func UserMessages(w http.ResponseWriter, r *http.Request) {
+	sess, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/login", 302)
+	} else {
+		err = r.ParseForm()
+		if err != nil {
+			danger(err.Error())
+			return
+		}
+		to_id := r.PostFormValue("to_id")
+		messages,err := models.GetUserMessagesAll(sess.UserId, to_id)
+		if err !=nil{
+			danger(err.Error())
+			return
+		}
+		b, err := json.Marshal(messages)
+
+		io.WriteString(w, string(b))
+	}
 }

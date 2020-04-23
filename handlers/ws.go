@@ -18,7 +18,9 @@ type Msg struct {
 	To          int       `json:"to"`
 }
 
-var clients = make(map[*websocket.Conn]bool) //ws客户端
+var client_users = make(map[*websocket.Conn]int) //客户端连接绑定user_id
+
+var user_clients = make(map[int]*websocket.Conn) //user_id 绑定客户端
 
 var messageChannel = make(chan interface{}) //消息通道存储
 
@@ -38,8 +40,7 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 		_, p, err := conn.ReadMessage()
 
 		if err != nil {
-			delete(clients, conn) //删除掉这个没用的客户端连接
-			danger(err.Error())
+			CloseClient(conn)
 			break
 		}
 
@@ -66,11 +67,22 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 				danger(err.Error())
 				break
 			}
-			if err := models.CreateLastRecord(user.Name,chat); err != nil {
+			if err := models.CreateLastRecord(user.Name, chat); err != nil {
 				danger(err.Error())
 				break
 			}
 			//找到次客户端发送消息
+			client := user_clients[msg.To]
+			if client == nil { //说明并没有登录
+				return;
+			}
+			err = client.WriteJSON(msg)
+
+			if err != nil {
+				fmt.Println("出错了")
+				CloseClient(client)
+				break
+			}
 		}
 	}
 }
@@ -79,12 +91,10 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 func SendClientMessage() {
 	for {
 		msg := <-messageChannel
-		for client := range clients {
+		for client := range client_users {
 			err := client.WriteJSON(msg)
 			if err != nil {
-				client.Close()
-				delete(clients, client)
-				danger(err.Error())
+				CloseClient(client)
 				break
 			}
 		}
@@ -106,8 +116,15 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//注册一个新的客户端
-	clients[ws] = true
+	client_users[ws] = sess.UserId
+	user_clients[sess.UserId] = ws
 	fmt.Println("连接成功")
 	go Reader(ws, sess, r)
 	go SendClientMessage()
+}
+
+func CloseClient(client *websocket.Conn) {
+	client.Close()
+	delete(user_clients, client_users[client])
+	delete(client_users, client)
 }

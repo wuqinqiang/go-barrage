@@ -82,3 +82,18 @@ ERROR 2020/04/22 21:01:08 helper.go:75: json: cannot unmarshal number into Go st
 ERROR 2020/04/22 22:08:02 helper.go:75: websocket: close 1001 (going away)
 ERROR 2020/04/22 23:15:58 helper.go:75: websocket: close 1001 (going away)
 WARNNIN 2020/04/22 23:15:59 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/23 21:49:38 helper.go:75: websocket: close 1006 (abnormal closure): unexpected EOF
+ERROR 2020/04/23 21:52:32 helper.go:75: websocket: close 1001 (going away)
+ERROR 2020/04/23 21:53:21 helper.go:75: websocket: close 1001 (going away)
+ERROR 2020/04/23 21:53:42 helper.go:75: websocket: close 1006 (abnormal closure): unexpected EOF
+ERROR 2020/04/23 21:54:02 helper.go:75: websocket: close 1001 (going away)
+ERROR 2020/04/23 21:54:36 helper.go:75: websocket: close 1001 (going away)
+WARNNIN 2020/04/23 22:00:29 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/23 22:01:08 helper.go:75: websocket: close 1006 (abnormal closure): unexpected EOF
+WARNNIN 2020/04/23 22:01:11 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/23 22:01:23 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/23 22:01:23 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/23 22:02:31 helper.go:75: websocket: close 1001 (going away)
+ERROR 2020/04/23 22:04:09 helper.go:75: websocket: close 1006 (abnormal closure): unexpected EOF
+WARNNIN 2020/04/23 22:04:10 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/23 22:06:33 helper.go:75: websocket: close 1006 (abnormal closure): unexpected EOF
