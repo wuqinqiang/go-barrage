@@ -47,25 +47,23 @@
                 <!-- Start of Discussions -->
                 <div class="tab-pane fade show active" id="conversations" role="tabpanel">
                     <div class="top">
-                        <form>
-                            <input type="search" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn prepend"><i data-eva="search"></i></button>
-                        </form>
-
+                        {{/*                        <input type="search" class="form-control" placeholder="Search">*/}}
+                        {{/*                        <button type="button" class="btn prepend"><i data-eva="search"></i></button>*/}}
                     </div>
                     <div class="middle">
                         <h4>Discussions</h4>
-                        <button type="button" class="btn round" data-toggle="modal" data-target="#compose"><i
+                        <button onclick="getUsers()" type="button" class="btn round" data-toggle="modal"
+                                data-target="#compose"><i
                                     data-eva="edit-2"></i></button>
                         <hr>
                         <ul class="nav discussions" role="tablist">
                             <input type="hidden" id="current_id" name="current_id" value="{{.CurrentId}}"><br>
-                            {{with .Records}}
+                            {{with .Friends}}
                                 {{range .}}
                                     <li>
 
-                                        <input type="hidden" id="from_id" name="from_id" value="{{.FromId}}"><br>
-                                        <input type="hidden" id="to_id" name="to_id" value="{{.ToId}}"><br>
+                                        <input type="hidden" id="from_id" name="from_id" value="{{.UserId}}"><br>
+                                        <input type="hidden" id="to_id" name="to_id" value="{{.FriendId}}"><br>
 
                                         <a href="#chat1" onclick="change_user(this)" class="filter direct"
                                            data-chat="open" data-toggle="tab"
@@ -75,10 +73,10 @@
                                                         data-eva="radio-button-on"></i></div>
                                             <div class="content">
                                                 <div class="headline">
-                                                    <h5>{{.SendName}}</h5>
-                                                    <span>{{.SendTime}}</span>
+                                                    <h5>{{.FriendName}}</h5>
+                                                    <span>发送时间</span>
                                                 </div>
-                                                <p>{{.Content}}</p>
+                                                <p>发送内容</p>
                                             </div>
                                         </a>
                                     </li>
@@ -114,7 +112,9 @@
                             {{with.Friends}}
                                 {{range .}}
                                     <li>
-                                        <a href="#">
+                                        <input type="hidden" id="from_id" name="from_id" value="{{.UserId}}"><br>
+                                        <input type="hidden" id="to_id" name="to_id" value="{{.FriendId}}"><br>
+                                        <a href="#chat1" onclick="change_user(this)">
                                             <div class="status online"><img
                                                         src="/static/dist/img/avatars/avatar-female-3.jpg" alt="avatar"><i
                                                         data-eva="radio-button-on"></i></div>
@@ -199,7 +199,8 @@
                                                                              data-eva-animation="pulse"></i></button>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn" data-toggle="modal" data-target="#compose"><i
+                                        <button onclick="getUsers()" type="button" class="btn" data-toggle="modal"
+                                                data-target="#compose"><i
                                                     data-eva="person-add" data-eva-animation="pulse"></i></button>
                                     </li>
                                     <li>
@@ -233,81 +234,81 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="middle" id="scroll">
-                            <div class="container">
-                                <ul>
-                                    <li>
-                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">
-                                        <div class="content">
-                                            <div class="message">
-                                                <div class="bubble">
-                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting
-                                                        industry.</p>
-                                                </div>
-                                            </div>
-                                            <span>07:30am</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="content">
-                                            <div class="message">
-                                                <div class="bubble">
-                                                    <p>Many desktop publishing packages.</p>
-                                                </div>
-                                            </div>
-                                            <span>11:56am</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">
-                                        <div class="content">
-                                            <div class="message">
-                                                <div class="bubble">
-                                                    <div class="attachment">
-                                                        <a href="#" class="round"><i data-eva="file-text"></i></a>
-                                                        <div class="meta">
-                                                            <a href="#"><h5>build-plugins.js</h5></a>
-                                                            <span>3kb</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <span>01:03pm</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="content">
-                                            <div class="message">
-                                                <div class="bubble">
-                                                    <p>It was popularised in the 1960s.</p>
-                                                </div>
-                                            </div>
-                                            <span>05:42pm</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">
-                                        <div class="content">
-                                            <div class="message">
-                                                <div class="bubble">
-                                                    <p>It is a long established fact that a reader will be
-                                                        /static/distracted.</p>
-                                                </div>
-                                            </div>
-                                            <span>08:20pm</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="content">
-                                            <div class="message">
-                                                <div class="bubble">
-                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random
-                                                        text.</p>
-                                                </div>
-                                            </div>
-                                            <span>10:15pm <i data-eva="done-all"></i></span>
-                                        </div>
-                                    </li>
+                        <div class="middle" id="scroll" style="overflow:auto">
+                            <div class="container" id="container2">
+                                <ul class="chat-list">
+                                    {{/*                                    <li>*/}}
+                                    {{/*                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">*/}}
+                                    {{/*                                        <div class="content">*/}}
+                                    {{/*                                            <div class="message">*/}}
+                                    {{/*                                                <div class="bubble">*/}}
+                                    {{/*                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting*/}}
+                                    {{/*                                                        industry.</p>*/}}
+                                    {{/*                                                </div>*/}}
+                                    {{/*                                            </div>*/}}
+                                    {{/*                                            <span>07:30am</span>*/}}
+                                    {{/*                                        </div>*/}}
+                                    {{/*                                    </li>*/}}
+                                    {{/*                                    <li>*/}}
+                                    {{/*                                        <div class="content">*/}}
+                                    {{/*                                            <div class="message">*/}}
+                                    {{/*                                                <div class="bubble">*/}}
+                                    {{/*                                                    <p>Many desktop publishing packages.</p>*/}}
+                                    {{/*                                                </div>*/}}
+                                    {{/*                                            </div>*/}}
+                                    {{/*                                            <span>11:56am</span>*/}}
+                                    {{/*                                        </div>*/}}
+                                    {{/*                                    </li>*/}}
+                                    {{/*                                    <li>*/}}
+                                    {{/*                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">*/}}
+                                    {{/*                                        <div class="content">*/}}
+                                    {{/*                                            <div class="message">*/}}
+                                    {{/*                                                <div class="bubble">*/}}
+                                    {{/*                                                    <div class="attachment">*/}}
+                                    {{/*                                                        <a href="#" class="round"><i data-eva="file-text"></i></a>*/}}
+                                    {{/*                                                        <div class="meta">*/}}
+                                    {{/*                                                            <a href="#"><h5>build-plugins.js</h5></a>*/}}
+                                    {{/*                                                            <span>3kb</span>*/}}
+                                    {{/*                                                        </div>*/}}
+                                    {{/*                                                    </div>*/}}
+                                    {{/*                                                </div>*/}}
+                                    {{/*                                            </div>*/}}
+                                    {{/*                                            <span>01:03pm</span>*/}}
+                                    {{/*                                        </div>*/}}
+                                    {{/*                                    </li>*/}}
+                                    {{/*                                    <li>*/}}
+                                    {{/*                                        <div class="content">*/}}
+                                    {{/*                                            <div class="message">*/}}
+                                    {{/*                                                <div class="bubble">*/}}
+                                    {{/*                                                    <p>It was popularised in the 1960s.</p>*/}}
+                                    {{/*                                                </div>*/}}
+                                    {{/*                                            </div>*/}}
+                                    {{/*                                            <span>05:42pm</span>*/}}
+                                    {{/*                                        </div>*/}}
+                                    {{/*                                    </li>*/}}
+                                    {{/*                                    <li>*/}}
+                                    {{/*                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">*/}}
+                                    {{/*                                        <div class="content">*/}}
+                                    {{/*                                            <div class="message">*/}}
+                                    {{/*                                                <div class="bubble">*/}}
+                                    {{/*                                                    <p>It is a long established fact that a reader will be*/}}
+                                    {{/*                                                        /static/distracted.</p>*/}}
+                                    {{/*                                                </div>*/}}
+                                    {{/*                                            </div>*/}}
+                                    {{/*                                            <span>08:20pm</span>*/}}
+                                    {{/*                                        </div>*/}}
+                                    {{/*                                    </li>*/}}
+                                    {{/*                                    <li>*/}}
+                                    {{/*                                        <div class="content">*/}}
+                                    {{/*                                            <div class="message">*/}}
+                                    {{/*                                                <div class="bubble">*/}}
+                                    {{/*                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random*/}}
+                                    {{/*                                                        text.</p>*/}}
+                                    {{/*                                                </div>*/}}
+                                    {{/*                                            </div>*/}}
+                                    {{/*                                            <span>10:15pm <i data-eva="done-all"></i></span>*/}}
+                                    {{/*                                        </div>*/}}
+                                    {{/*                                    </li>*/}}
                                 </ul>
                             </div>
                         </div>
@@ -487,54 +488,29 @@
                         <div class="participants tab-pane active" id="participants" role="tabpanel">
                             <div class="search">
                                 <form>
-                                    <input type="search" class="form-control" placeholder="Search">
-                                    <button type="submit" class="btn prepend"><i data-eva="search"></i></button>
+                                    <input name="username" type="search" class="form-control" placeholder="Search">
+                                    <button type="button" onclick="findUserByName()" class="btn prepend"><i
+                                                data-eva="search"></i></button>
                                 </form>
                             </div>
                             <h4>Users</h4>
                             <hr>
-                            <ul class="users">
-                                <li>
-                                    <div class="status offline"><img src="/static/dist/img/avatars/avatar-female-2.jpg"
-                                                                     alt="avatar"><i data-eva="radio-button-on"></i>
-                                    </div>
-                                    <div class="content">
-                                        <h5>Maria Baron</h5>
-                                        <span>Indore, India</span>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="user8">
-                                        <label class="custom-control-label" for="user8"></label>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="status online"><img src="/static/dist/img/avatars/avatar-female-3.jpg"
-                                                                    alt="avatar"><i data-eva="radio-button-on"></i>
-                                    </div>
-                                    <div class="content">
-                                        <h5>Sara Koch</h5>
-                                        <span>Sofia, BG</span>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="user9">
-                                        <label class="custom-control-label" for="user9"></label>
-                                    </div>
-                                </li>
+                            <ul class="users" id="userList">
                             </ul>
                         </div>
                         <!-- End of Participants -->
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn primary">Compose</button>
-                </div>
+                {{/*                <div class="modal-footer">*/}}
+                {{/*                    <button type="submit" class="btn primary">11</button>*/}}
+                {{/*                </div>*/}}
             </div>
         </div>
     </div>
     <!-- End of Compose -->
 </div>
 <!-- Layout -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script src="/static/dist/js/vendor/jquery-slim.min.js"></script>
 <script src="/static/dist/js/vendor/popper.min.js"></script>
 <script src="/static/dist/js/vendor/feather.min.js"></script>
@@ -542,7 +518,7 @@
 <script src="/static/dist/js/vendor/bootstrap.min.js"></script>
 <script src="/static/dist/js/swipe.min.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 </html>
 
@@ -552,7 +528,7 @@
     var websocket
     var currentId
 
-    var sendId=1 //发送对象
+    var sendId = 1 //发送对象
     wsServer = 'ws://localhost:8080/ws';
 
     websocket = new WebSocket(wsServer);
@@ -572,11 +548,15 @@
     websocket.onmessage = function (evt) {
         // 处理接收的消息
         let param = JSON.parse(evt.data);
-        createBarrage(param.user_name + "说:" + param.message, true);
+        createChatHtmlNode(param.message, param.created_at, 2)
+        msgScrollTOp()
+
     };
 
     websocket.onerror = function (evt, e) {
-        console.log('Error occured: ' + evt.data);
+        swal("错误了", "", "error", {
+            button: "继续"
+        })
     };
 
 
@@ -589,21 +569,12 @@
                 button: "继续"
             })
         }
-        var info = {'message': content, 'type': type, 'to':parseInt(sendId), 'content_type': 1};
+        var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': 1};
         this.wsSend(info);
-
-        // var send_time = Date.parse(new Date()) / 1000;
-		//
-        // //先把当前的模板拼接当前自己发送的消息
-        // var data = {
-        //     'content': info.content,
-        //     'send_time': send_time,
-        //     'from': this.ownUid,
-        //     'type': info.type,
-        //     'to': this.username
-        // };
-        // this.appendMessage(data);
-        // this.inputContent = '';//清除输入框内容
+        //添加聊天
+        createChatHtmlNode(info.message, '2020-04-24', 1)
+        //下拉框拉到最底部
+        msgScrollTOp()
 
     }
 
@@ -613,17 +584,120 @@
         var from_id = $(obj).parents("li").find("#from_id").val();
         var to_id = $(obj).parents("li").find("#to_id").val();
         sendId = currentId == from_id ? to_id : from_id;
+        //查看消息记录
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8080/chat/chatAll',//被请求的API接口地址
+            data: {to_id: sendId},
+            dataType: 'json',
+            success: function (data) {
 
-            //查看消息记录
-            $.ajax({
-                type: "GET",
-                url: 'http://localhost:8080/chat/chatAll',//被请求的API接口地址
-                dataType: 'json',
-                success: function (data) {
-                    console.log(data)
-                },
-            });
+                $(".chat-child").parent().remove()
 
+                var ui = '<ul>\n' +
+                    '\n' +
+                    '                      </ul>';
+
+                $("#container2").append(ui)
+
+                for (var i = 0; i < data.length; i++) {
+                    type = data[i].FromId == currentId ? 1 : 2
+                    createChatHtmlNode(data[i].Content, data[i].SendTime, type)
+                }
+                msgScrollTOp()
+            },
+        });
+    }
+
+
+    //获取用户列表
+    function getUsers() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8080/users',
+            dataType: 'json',
+            success: function (data) {
+                $("#userList").children().remove()
+                for (var i = 0; i < data.length; i++) {
+                    userNode = '                                <li>\n' +
+                        '                                    <div class="status online"><img src="/static/dist/img/avatars/avatar-female-3.jpg"\n' +
+                        '                                                                    alt="avatar"><i data-eva="radio-button-on"></i>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="content">\n' +
+                        '                                        <h5>' + data[i].Name + '</h5>\n' +
+                        '                                        <span>' + data[i].Email + '</span>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="custom-control">\n' +
+                        '                                        <input type="checkbox" onclick="ToFriendUserById(' + data[i].Id + ')" class="custom-control-input" id="user' + data[i].Id + '">\n' +
+                        '                                        <label class="custom-control-label" for="user' + data[i].Id + '"></label>\n' +
+                        '                                    </div>\n' +
+                        '                                </li>'
+
+                    $("#userList").append(userNode)
+                }
+
+            },
+        });
+    }
+
+
+    //通过姓名查找用户
+    function findUserByName() {
+        //用户名
+        var name = $(" input[ name='username' ] ").val()
+        if (name == "" || name == null) {
+            swal("请输入要查询的用户名", "", "error", {
+                button: "继续"
+            })
+        }
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8080/user',
+            data: {name: name},
+            dataType: 'json',
+            success: function (data) {
+                if (data.Id == 0) {
+                    swal("不存在此用户", "请重新输入", "info", {
+                        button: "继续"
+                    })
+                    return;
+                }
+                $("#userList").children().remove()
+                userNode = '                                <li>\n' +
+                    '                                    <div class="status online"><img src="/static/dist/img/avatars/avatar-female-3.jpg"\n' +
+                    '                                                                    alt="avatar"><i data-eva="radio-button-on"></i>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="content">\n' +
+                    '                                        <h5>' + data.Name + '</h5>\n' +
+                    '                                        <span>' + data.Email + '</span>\n' +
+                    '                                    </div>\n' +
+                    '                                    <div class="custom-control">\n' +
+                    '                                        <input type="checkbox" onclick="ToFriendUserById(' + data.Id + ')" class="custom-control-input" id="user' + data.Id + '">\n' +
+                    '                                        <label class="custom-control-label" for="user' + data.Id + '"></label>\n' +
+                    '                                    </div>\n' +
+                    '                                </li>'
+                $("#userList").append(userNode)
+            },
+        });
+
+    }
+
+
+    //加好友申请
+    function ToFriendUserById(id) {
+        $.ajax({
+            type: "POST",
+            url: 'http://localhost:8080/friend/crete',
+            data: {user_id: id},
+            dataType: 'json',
+            suceess: function (data) {
+                console.log(data)
+                console.log(111)
+                swal("已发送好友请求", "", "suceess", {
+                    button: "继续"
+                })
+            },
+        });
     }
 
 
@@ -632,6 +706,45 @@
         websocket.send(JSON.stringify(info));
     }
 
+    //消息聊天到底最底部
+    function msgScrollTOp() {
+        var now = new Date();
+        var div = document.getElementById('scroll');
+        div.innerHTML = div.innerHTML + 'time_' + now.getTime() + '<br />';
+        div.scrollTop = div.scrollHeight
+    }
+
+
+    //聊天记录动态添加到html
+    //type=1给自己加 2给别人加 3 都加
+    function createChatHtmlNode(content, time, type) {
+
+        var own = '<li class="chat-child">\n' +
+            '\n' +
+            '                      </li>';
+
+        var other = '<li class="chat-child">\n' +
+            '                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">\n' +
+            '                                        <div class="content">\n' +
+            '                                            <div class="message">\n' +
+            '                                                <div class="bubble">\n' +
+            '                                                    <p>' + content + '\n' +
+            '                                                        </p>\n' +
+            '                                                </div>\n' +
+            '                                            </div>\n' +
+            '                                            <span>' + time + '</span>\n' +
+            '                                        </div>\n' +
+            '                                    </li>'
+
+        if (type == 1) {
+            $("#container2").children("ul").append(own)
+            $("#container2").children("ul").append(other)
+        } else {
+            $("#container2").children("ul").append(other)
+            $("#container2").children("ul").append(own)
+        }
+
+    }
 
 </script>
 

@@ -119,8 +119,29 @@ var webRouters = WebRouters{
 	//单聊
 	{
 		"chatMessage",
-		"GET",
+		"POST",
 		"/chat/chatAll",
 		handlers.UserMessages,
+	},
+	//获取所有用户
+	{
+		"getUsers",
+		"GET",
+		"/users",
+		handlers.Users,
+	},
+	//查找指定用户
+	{
+		"findUserByName",
+		"POST",
+		"/user",
+		handlers.FindUser,
+	},
+	//加好友
+	{
+		"AddUserFriend",
+		"POST",
+		"/friend/crete",
+		handlers.CreateFriend,
 	},
 }

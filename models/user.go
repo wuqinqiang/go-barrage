@@ -92,14 +92,14 @@ func UserDeleteAll() (err error) {
 	return
 }
 
-func Users() (users []User, err error) {
-	rows, err := Db.Query("select id,uuid,name,email,password,created_at from users")
+func Users(user_id int) (users []User, err error) {
+	rows, err := Db.Query("select id,uuid,name,email from users where id !=?",user_id)
 	if err != nil {
 		return
 	}
 	for rows.Next() {
 		user := User{}
-		if err = rows.Scan(&user.Id, &user.Uuid, &user.Name, &user.Email, &user.Password, &user.CreatedAt); err != nil {
+		if err = rows.Scan(&user.Id, &user.Uuid, &user.Name, &user.Email); err != nil {
 			return
 		}
 		users = append(users, user)
@@ -115,9 +115,28 @@ func UserByEmail(email string) (user User, err error) {
 	return
 }
 
+func UserName(name string) (user User, err error) {
+	user = User{}
+	err = Db.QueryRow("select id,uuid,name,email from users where name=?", name).
+		Scan(&user.Id, &user.Uuid, &user.Name, &user.Email)
+	if err !=nil{
+		fmt.Println(err.Error())
+		return ;
+	}
+
+	return
+}
+
 func UserByUUID(uuid string) (user User, err error) {
 	user = User{}
 	err = Db.QueryRow("select id,uuid,name,email,password,created_at FROM users WHERE uuid=?", uuid).
+		Scan(&user.Id, &user.Email, &user.Name, &user.Uuid, &user.CreatedAt)
+	return
+}
+
+func UserByID(id int) (user User, err error) {
+	user = User{}
+	err = Db.QueryRow("select id,uuid,name,email,password,created_at FROM users WHERE id=?", id).
 		Scan(&user.Id, &user.Email, &user.Name, &user.Uuid, &user.CreatedAt)
 	return
 }
@@ -241,15 +260,13 @@ func (user *User) CreateChatMessage(message string, to_id int, send_type int, co
 	defer stmin.Close()
 	uuid := createUUID()
 	stmin.Exec(uuid, time.Now(), message, user.Id, to_id, send_type, content_tpye)
-	stmout,err:=Db.Prepare("select * from chat_records where uuid=?")
-	if err !=nil{
+	stmout, err := Db.Prepare("select * from chat_records where uuid=?")
+	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
-
-
 	defer stmout.Close()
-	stmout.QueryRow(uuid).Scan(&chatRecord.Id,&chatRecord.Uuid,&chatRecord.SendTime,
-		&chatRecord.Content,&chatRecord.FromId,&chatRecord.ToId,&chatRecord.Type,&chatRecord.ContentType)
+	stmout.QueryRow(uuid).Scan(&chatRecord.Id, &chatRecord.Uuid, &chatRecord.SendTime,
+		&chatRecord.Content, &chatRecord.FromId, &chatRecord.ToId, &chatRecord.Type, &chatRecord.ContentType)
 	return
 }

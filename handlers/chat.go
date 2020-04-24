@@ -26,7 +26,6 @@ func ChatIndex(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		chatInfo := ChatInfo{
-			Records:   user.GetReCordFriends(),
 			Friends:   user.GetUserFriends(),
 			CurrentId: user.Id, //当前登录用户id
 		}
@@ -42,6 +41,7 @@ func ChatIndex(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//历史记录
 func UserMessages(w http.ResponseWriter, r *http.Request) {
 	sess, err := session(w, r)
 	if err != nil {
@@ -53,13 +53,14 @@ func UserMessages(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		to_id := r.PostFormValue("to_id")
+		fmt.Println(to_id)
 		messages,err := models.GetUserMessagesAll(sess.UserId, to_id)
 		if err !=nil{
 			danger(err.Error())
 			return
 		}
+		res,_:=json.Marshal(models.Application{})
 		b, err := json.Marshal(messages)
-
 		io.WriteString(w, string(b))
 	}
 }

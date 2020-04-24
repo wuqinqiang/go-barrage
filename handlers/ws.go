@@ -38,7 +38,6 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 		var msg Msg
 		//读取信息
 		_, p, err := conn.ReadMessage()
-
 		if err != nil {
 			CloseClient(conn)
 			break
@@ -51,8 +50,9 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 		}
 		user, err := sess.User()
 		//记录发送消息
-
 		if msg.Type == 5 { //是弹幕发送
+			fmt.Println("收到消息了")
+
 			if _, err := user.CreateMessage(RemoteIP(r), msg.Message, msg.Type); err != nil {
 				danger(err.Error())
 				break
@@ -71,17 +71,22 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 				danger(err.Error())
 				break
 			}
-			//找到次客户端发送消息
+			////找到次客户端发送消息
 			client := user_clients[msg.To]
-			if client == nil { //说明并没有登录
-				return;
-			}
-			err = client.WriteJSON(msg)
-
-			if err != nil {
-				fmt.Println("出错了")
-				CloseClient(client)
-				break
+			if client == nil {
+				//说明并没有登录，记录未读消息
+				err:=models.AddUnreadMessage(user.Id,msg.To)
+				if err !=nil{
+					danger(err.Error())
+					break
+				}
+			} else {
+				err = client.WriteJSON(msg)
+				if err != nil {
+					fmt.Println("出错了")
+					CloseClient(client)
+					break
+				}
 			}
 		}
 	}
@@ -115,7 +120,7 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 		warning(err.Error())
 		return
 	}
-	//注册一个新的客户端
+	//双向绑定
 	client_users[ws] = sess.UserId
 	user_clients[sess.UserId] = ws
 	fmt.Println("连接成功")

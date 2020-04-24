@@ -24,7 +24,7 @@ func GetUserMessagesAll(user_id int, to_id string) (chats []ChatRecord,err error
 	}
 	for rows.Next() {
 		record := ChatRecord{}
-		if err = rows.Scan(&record); err != nil {
+		if err = rows.Scan(&record.Id,&record.Uuid,&record.SendTime,&record.Content,&record.FromId,&record.ToId,&record.Type,&record.ContentType); err != nil {
 			fmt.Println(err.Error())
 			return
 		}
