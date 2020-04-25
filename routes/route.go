@@ -144,4 +144,18 @@ var webRouters = WebRouters{
 		"/friend/crete",
 		handlers.CreateFriend,
 	},
+	//获取审核列表
+	{
+		"getApplications",
+		"GET",
+		"/user/apps",
+		handlers.GetApplications,
+	},
+	//获取审核列表
+	{
+		"handleApp",
+		"POST",
+		"/user/handleApp",
+		handlers.HandleApplication,
+	},
 }

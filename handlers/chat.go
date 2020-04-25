@@ -59,7 +59,6 @@ func UserMessages(w http.ResponseWriter, r *http.Request) {
 			danger(err.Error())
 			return
 		}
-		res,_:=json.Marshal(models.Application{})
 		b, err := json.Marshal(messages)
 		io.WriteString(w, string(b))
 	}

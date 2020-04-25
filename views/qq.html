@@ -27,7 +27,7 @@
                        aria-selected="true"><i data-eva="message-square" data-eva-animation="pulse"></i></a></li>
                 <li><a href="#friends" data-toggle="tab" role="tab" aria-controls="friends" aria-selected="false"><i
                                 data-eva="people" data-eva-animation="pulse"></i></a></li>
-                <li><a href="#notifications" data-toggle="tab" role="tab" aria-controls="notifications"
+                <li><a href="#notifications" onclick="GetApplications()" data-toggle="tab" role="tab" aria-controls="notifications"
                        aria-selected="false"><i data-eva="bell" data-eva-animation="pulse"></i></a></li>
                 <li>
                     <button type="button" class="btn mode"><i data-eva="bulb" data-eva-animation="pulse"></i></button>
@@ -142,27 +142,8 @@
                     <div class="middle">
                         <h4>Notifications</h4>
                         <hr>
-                        <ul class="notifications">
-                            <li>
-                                <div class="round"><i data-eva="person-done"></i></div>
-                                <p>Quincy has joined to <strong>Squad Ghouls</strong> group.</p>
-                            </li>
-                            <li>
-                                <div class="round"><i data-eva="lock"></i></div>
-                                <p>You need change your password for security reasons.</p>
-                            </li>
-                            <li>
-                                <div class="round"><i data-eva="attach"></i></div>
-                                <p>Mark attached the file <strong>workbox.js</strong>.</p>
-                            </li>
-                            <li>
-                                <div class="icon round"><i data-eva="gift"></i></div>
-                                <p>Sara has a birthday today. Wish her all the best.</p>
-                            </li>
-                            <li>
-                                <div class="round"><i data-eva="person"></i></div>
-                                <p>Sanne has accepted your friend request.</p>
-                            </li>
+                        <ul class="notifications" id="system_notices">
+
                         </ul>
                     </div>
                 </div>
@@ -548,8 +529,15 @@
     websocket.onmessage = function (evt) {
         // 处理接收的消息
         let param = JSON.parse(evt.data);
-        createChatHtmlNode(param.message, param.created_at, 2)
-        msgScrollTOp()
+        if (typeof (param.Remark) == "undefined") { //普通聊天消息
+            createChatHtmlNode(param.message, param.created_at, 2)
+            msgScrollTOp()
+        } else {
+            swal("您有新的好友请求");
+            addHandleFriendHtml(param.FromId, param.Remark)
+            //   console.log("这是好友申请的消息")
+        }
+
 
     };
 
@@ -577,6 +565,7 @@
         msgScrollTOp()
 
     }
+
 
     //切换聊天对象的时候更新当前将要聊天对象的user_Id
     function change_user(obj) {
@@ -628,10 +617,13 @@
                         '                                        <span>' + data[i].Email + '</span>\n' +
                         '                                    </div>\n' +
                         '                                    <div class="custom-control">\n' +
-                        '                                        <input type="checkbox" onclick="ToFriendUserById(' + data[i].Id + ')" class="custom-control-input" id="user' + data[i].Id + '">\n' +
-                        '                                        <label class="custom-control-label" for="user' + data[i].Id + '"></label>\n' +
-                        '                                    </div>\n' +
-                        '                                </li>'
+                        ' <button  onclick="ToFriendUserById(' + data[i].Id + ')" type="button" class="btn" data-toggle="modal"\n' +
+                        '                                                data-target="#compose"><i\n' +
+                        '                                                    data-eva="person-add" data-eva-animation="pulse">请求验证</i></button>'
+                    // '                                        <input type="button" onclick="ToFriendUserById(' + data[i].Id + ')" class="custom-control-input" id="user' + data[i].Id + '">\n' +
+                    // '                                        <label class="custom-control-label" for="user' + data[i].Id + '"></label>\n' +
+                    '                                    </div>\n' +
+                    '                                </li>'
 
                     $("#userList").append(userNode)
                 }
@@ -640,6 +632,19 @@
         });
     }
 
+    //获取好友申请
+    function GetApplications() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8080/user/apps',//被请求的API接口地址
+            dataType: 'json',
+            success: function (data) {
+                for (i=0;i<data.length;i++){
+                    addHandleFriendHtml(data[i].FromId,data[i].Remark)
+                }
+            },
+        });
+    }
 
     //通过姓名查找用户
     function findUserByName() {
@@ -690,14 +695,65 @@
             url: 'http://localhost:8080/friend/crete',
             data: {user_id: id},
             dataType: 'json',
-            suceess: function (data) {
-                console.log(data)
-                console.log(111)
-                swal("已发送好友请求", "", "suceess", {
-                    button: "继续"
-                })
+            success: function (data) {
+                if (data == 2) {
+                    swal("已经是好友关系请勿发送", "", "error", {
+                        button: "继续"
+                    })
+                } else {
+                    swal("已发送好友请求", "", "success", {
+                        button: "继续"
+                    })
+                }
             },
         });
+    }
+
+
+    //动态增加好友请求模板
+    function addHandleFriendHtml(user_id, content) {
+        var addHandle = '<li">\n' +
+            '                                <p >' + content + ' <button style="color: red"  onclick=handleFriendApp(' + user_id + ',"'+content+'")>处理</button></p>\n' +
+            '                            </li>'
+
+        //处理通过的模板
+        var HandleSuccess = '                            <li>\n' +
+            '                                <div class="round"><i data-eva="person-done"></i></div>\n' +
+            '                                <p>Quincy has joined to <strong>Squad Ghouls</strong> group.</p>\n' +
+            '                            </li>'
+
+        $("#system_notices").append(addHandle)
+
+    }
+
+    function handleFriendApp(user_id,content) {
+        swal({
+            title : content,
+            text : "是同意呢还是同意呢",
+            icon : "info",
+            buttons : {
+                button1 : {
+                    text : "拒绝",
+                    value : false,
+                },
+                button2 : {
+                    text : "同意",
+                    value : true,
+                }
+            },
+        }).then(function(value) {   //这里的value就是按钮的value值，只要对应就可以啦
+            status = value == true ? 1 : 2
+            $.ajax({
+                type: "POST",
+                url: 'http://localhost:8080/user/handleApp',
+                data: {from_id: user_id,status:status},
+                dataType: 'json',
+                success: function (data) {
+                    console.log(data)
+                },
+            });
+        });
+
     }
 
 
