@@ -4,5 +4,6 @@
 *.xml linguist-language=Go
 *.css linguist-language=Go
 *.md  linguist-language=Go
-*.jpg  linguist-language=Go
-*.png  linguist-language=Go
+*.jpg linguist-language=Go
+*.png linguist-language=Go
+
