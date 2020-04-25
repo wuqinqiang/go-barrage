@@ -9,9 +9,13 @@
     <link href="/static/dist/css/lib/bootstrap.min.css" type="text/css" rel="stylesheet">
 
     <link href="/static/dist/css/swipe.min.css" type="text/css" rel="stylesheet">
+{{/*    <link href="/static/dist/css/dark.min.css" type="text/css" rel="stylesheet">*/}}
     <!-- Favicon -->
     <link href="/static/dist/img/favicon.png" type="image/png" rel="icon">
 </head>
+<style>
+
+</style>
 <body>
 <!-- Layout -->
 <div class="layout">
@@ -25,9 +29,10 @@
             <ul class="nav" role="tablist">
                 <li><a href="#conversations" class="active" data-toggle="tab" role="tab" aria-controls="conversations"
                        aria-selected="true"><i data-eva="message-square" data-eva-animation="pulse"></i></a></li>
-                <li><a href="#friends" data-toggle="tab" role="tab" aria-controls="friends" aria-selected="false"><i
+                <li><a href="#friends" onclick="getUsers()" data-toggle="tab" role="tab" aria-controls="friends" aria-selected="false"><i
                                 data-eva="people" data-eva-animation="pulse"></i></a></li>
-                <li><a href="#notifications" onclick="GetApplications()" data-toggle="tab" role="tab" aria-controls="notifications"
+                <li><a href="#notifications" onclick="GetApplications()" data-toggle="tab" role="tab"
+                       aria-controls="notifications"
                        aria-selected="false"><i data-eva="bell" data-eva-animation="pulse"></i></a></li>
                 <li>
                     <button type="button" class="btn mode"><i data-eva="bulb" data-eva-animation="pulse"></i></button>
@@ -64,6 +69,8 @@
 
                                         <input type="hidden" id="from_id" name="from_id" value="{{.UserId}}"><br>
                                         <input type="hidden" id="to_id" name="to_id" value="{{.FriendId}}"><br>
+                                        <input type="hidden" id="to_name" name="to_name" value="{{.FriendName}}"><br>
+
 
                                         <a href="#chat1" onclick="change_user(this)" class="filter direct"
                                            data-chat="open" data-toggle="tab"
@@ -98,22 +105,12 @@
                         <h4>Friends</h4>
                         <hr>
                         <ul class="users">
-
-                            {{/*									<li>*/}}
-                            {{/*										<a href="#">*/}}
-                            {{/*											<div class="status offline"><img src="/static/dist/img/avatars/avatar-female-2.jpg" alt="avatar"><i data-eva="radio-button-on"></i></div>*/}}
-                            {{/*											<div class="content">*/}}
-                            {{/*												<h5>Maria Baron</h5>*/}}
-                            {{/*												<span>Indore, India</span>*/}}
-                            {{/*											</div>*/}}
-                            {{/*											<div class="icon"><i data-eva="person"></i></div>*/}}
-                            {{/*										</a>*/}}
-                            {{/*									</li>*/}}
                             {{with.Friends}}
                                 {{range .}}
                                     <li>
                                         <input type="hidden" id="from_id" name="from_id" value="{{.UserId}}"><br>
                                         <input type="hidden" id="to_id" name="to_id" value="{{.FriendId}}"><br>
+                                        <input type="hidden" id="to_name" name="to_name" value="{{.FriendName}}"><br>
                                         <a href="#chat1" onclick="change_user(this)">
                                             <div class="status online"><img
                                                         src="/static/dist/img/avatars/avatar-female-3.jpg" alt="avatar"><i
@@ -166,7 +163,7 @@
                                 <div class="headline">
                                     <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">
                                     <div class="content">
-                                        <h5>Quincy Hensen</h5>
+                                        <h5 id="current_name">Quincy Hensen</h5>
                                         <span>Away</span>
                                     </div>
                                 </div>
@@ -185,7 +182,7 @@
                                                     data-eva="person-add" data-eva-animation="pulse"></i></button>
                                     </li>
                                     <li>
-                                        <button type="button" class="btn" data-utility="open"><i data-eva="info"
+                                        <button onclick="getUsers()" type="button" class="btn" data-utility="open"><i data-eva="info"
                                                                                                  data-eva-animation="pulse"></i>
                                         </button>
                                     </li>
@@ -218,78 +215,6 @@
                         <div class="middle" id="scroll" style="overflow:auto">
                             <div class="container" id="container2">
                                 <ul class="chat-list">
-                                    {{/*                                    <li>*/}}
-                                    {{/*                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">*/}}
-                                    {{/*                                        <div class="content">*/}}
-                                    {{/*                                            <div class="message">*/}}
-                                    {{/*                                                <div class="bubble">*/}}
-                                    {{/*                                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting*/}}
-                                    {{/*                                                        industry.</p>*/}}
-                                    {{/*                                                </div>*/}}
-                                    {{/*                                            </div>*/}}
-                                    {{/*                                            <span>07:30am</span>*/}}
-                                    {{/*                                        </div>*/}}
-                                    {{/*                                    </li>*/}}
-                                    {{/*                                    <li>*/}}
-                                    {{/*                                        <div class="content">*/}}
-                                    {{/*                                            <div class="message">*/}}
-                                    {{/*                                                <div class="bubble">*/}}
-                                    {{/*                                                    <p>Many desktop publishing packages.</p>*/}}
-                                    {{/*                                                </div>*/}}
-                                    {{/*                                            </div>*/}}
-                                    {{/*                                            <span>11:56am</span>*/}}
-                                    {{/*                                        </div>*/}}
-                                    {{/*                                    </li>*/}}
-                                    {{/*                                    <li>*/}}
-                                    {{/*                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">*/}}
-                                    {{/*                                        <div class="content">*/}}
-                                    {{/*                                            <div class="message">*/}}
-                                    {{/*                                                <div class="bubble">*/}}
-                                    {{/*                                                    <div class="attachment">*/}}
-                                    {{/*                                                        <a href="#" class="round"><i data-eva="file-text"></i></a>*/}}
-                                    {{/*                                                        <div class="meta">*/}}
-                                    {{/*                                                            <a href="#"><h5>build-plugins.js</h5></a>*/}}
-                                    {{/*                                                            <span>3kb</span>*/}}
-                                    {{/*                                                        </div>*/}}
-                                    {{/*                                                    </div>*/}}
-                                    {{/*                                                </div>*/}}
-                                    {{/*                                            </div>*/}}
-                                    {{/*                                            <span>01:03pm</span>*/}}
-                                    {{/*                                        </div>*/}}
-                                    {{/*                                    </li>*/}}
-                                    {{/*                                    <li>*/}}
-                                    {{/*                                        <div class="content">*/}}
-                                    {{/*                                            <div class="message">*/}}
-                                    {{/*                                                <div class="bubble">*/}}
-                                    {{/*                                                    <p>It was popularised in the 1960s.</p>*/}}
-                                    {{/*                                                </div>*/}}
-                                    {{/*                                            </div>*/}}
-                                    {{/*                                            <span>05:42pm</span>*/}}
-                                    {{/*                                        </div>*/}}
-                                    {{/*                                    </li>*/}}
-                                    {{/*                                    <li>*/}}
-                                    {{/*                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">*/}}
-                                    {{/*                                        <div class="content">*/}}
-                                    {{/*                                            <div class="message">*/}}
-                                    {{/*                                                <div class="bubble">*/}}
-                                    {{/*                                                    <p>It is a long established fact that a reader will be*/}}
-                                    {{/*                                                        /static/distracted.</p>*/}}
-                                    {{/*                                                </div>*/}}
-                                    {{/*                                            </div>*/}}
-                                    {{/*                                            <span>08:20pm</span>*/}}
-                                    {{/*                                        </div>*/}}
-                                    {{/*                                    </li>*/}}
-                                    {{/*                                    <li>*/}}
-                                    {{/*                                        <div class="content">*/}}
-                                    {{/*                                            <div class="message">*/}}
-                                    {{/*                                                <div class="bubble">*/}}
-                                    {{/*                                                    <p>Contrary to popular belief, Lorem Ipsum is not simply random*/}}
-                                    {{/*                                                        text.</p>*/}}
-                                    {{/*                                                </div>*/}}
-                                    {{/*                                            </div>*/}}
-                                    {{/*                                            <span>10:15pm <i data-eva="done-all"></i></span>*/}}
-                                    {{/*                                        </div>*/}}
-                                    {{/*                                    </li>*/}}
                                 </ul>
                             </div>
                         </div>
@@ -313,7 +238,7 @@
                                 people
                             </button>
                             <ul class="nav" role="tablist">
-                                <li><a href="#users" class="active" data-toggle="tab" role="tab" aria-controls="users"
+                                <li><a href="#users"  class="active" data-toggle="tab" role="tab" aria-controls="users"
                                        aria-selected="true">Users</a></li>
                             </ul>
                             <div class="tab-content">
@@ -321,121 +246,7 @@
                                 <div class="tab-pane fade active show" id="users" role="tabpanel">
                                     <h4>Users</h4>
                                     <hr>
-                                    <ul class="users">
-                                        <li>
-                                            <div class="status online"><img
-                                                        src="/static/dist/img/avatars/avatar-male-1.jpg" alt="avatar"><i
-                                                        data-eva="radio-button-on"></i></div>
-                                            <div class="content">
-                                                <h5>Ham Chuwon</h5>
-                                                <span>Florida, US</span>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i
-                                                            data-eva="more-vertical"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button type="button" class="dropdown-item">Edit</button>
-                                                    <button type="button" class="dropdown-item">Share</button>
-                                                    <button type="button" class="dropdown-item">Delete</button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="status offline"><img
-                                                        src="/static/dist/img/avatars/avatar-male-2.jpg" alt="avatar"><i
-                                                        data-eva="radio-button-on"></i></div>
-                                            <div class="content">
-                                                <h5>Quincy Hensen</h5>
-                                                <span>Shanghai, China</span>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i
-                                                            data-eva="more-vertical"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button type="button" class="dropdown-item">Edit</button>
-                                                    <button type="button" class="dropdown-item">Share</button>
-                                                    <button type="button" class="dropdown-item">Delete</button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="status online"><img
-                                                        src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar"><i
-                                                        data-eva="radio-button-on"></i></div>
-                                            <div class="content">
-                                                <h5>Mark Hog</h5>
-                                                <span>Olso, Norway</span>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i
-                                                            data-eva="more-vertical"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button type="button" class="dropdown-item">Edit</button>
-                                                    <button type="button" class="dropdown-item">Share</button>
-                                                    <button type="button" class="dropdown-item">Delete</button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="status offline"><img
-                                                        src="/static/dist/img/avatars/avatar-male-4.jpg" alt="avatar"><i
-                                                        data-eva="radio-button-on"></i></div>
-                                            <div class="content">
-                                                <h5>Sanne Viscaal</h5>
-                                                <span>Helena, Montana</span>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i
-                                                            data-eva="more-vertical"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button type="button" class="dropdown-item">Edit</button>
-                                                    <button type="button" class="dropdown-item">Share</button>
-                                                    <button type="button" class="dropdown-item">Delete</button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="status offline"><img
-                                                        src="/static/dist/img/avatars/avatar-male-5.jpg" alt="avatar"><i
-                                                        data-eva="radio-button-on"></i></div>
-                                            <div class="content">
-                                                <h5>Alex Just</h5>
-                                                <span>London, UK</span>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i
-                                                            data-eva="more-vertical"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button type="button" class="dropdown-item">Edit</button>
-                                                    <button type="button" class="dropdown-item">Share</button>
-                                                    <button type="button" class="dropdown-item">Delete</button>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="status online"><img
-                                                        src="/static/dist/img/avatars/avatar-male-6.jpg" alt="avatar"><i
-                                                        data-eva="radio-button-on"></i></div>
-                                            <div class="content">
-                                                <h5>Arturo Thomas</h5>
-                                                <span>Vienna, Austria</span>
-                                            </div>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn" data-toggle="dropdown"
-                                                        aria-haspopup="true" aria-expanded="false"><i
-                                                            data-eva="more-vertical"></i></button>
-                                                <div class="dropdown-menu dropdown-menu-right">
-                                                    <button type="button" class="dropdown-item">Edit</button>
-                                                    <button type="button" class="dropdown-item">Share</button>
-                                                    <button type="button" class="dropdown-item">Delete</button>
-                                                </div>
-                                            </div>
-                                        </li>
+                                    <ul class="users" id="userList2">
                                     </ul>
                                 </div>
                                 <!-- End of Users -->
@@ -515,9 +326,6 @@
     websocket = new WebSocket(wsServer);
 
     websocket.onopen = function (evt) {
-        swal("已成功连接!", "上车了!", "success", {
-            button: "继续!",
-        });
     };
 
     websocket.onclose = function (evt) {
@@ -559,6 +367,8 @@
         }
         var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': 1};
         this.wsSend(info);
+        $("#chat-text").val("")
+
         //添加聊天
         createChatHtmlNode(info.message, '2020-04-24', 1)
         //下拉框拉到最底部
@@ -572,6 +382,8 @@
         currentId = $("#current_id").val();
         var from_id = $(obj).parents("li").find("#from_id").val();
         var to_id = $(obj).parents("li").find("#to_id").val();
+        var to_name = $(obj).parents("li").find("#to_name").val();
+        $("#current_name").text(to_name)
         sendId = currentId == from_id ? to_id : from_id;
         //查看消息记录
         $.ajax({
@@ -580,15 +392,7 @@
             data: {to_id: sendId},
             dataType: 'json',
             success: function (data) {
-
-                $(".chat-child").parent().remove()
-
-                var ui = '<ul>\n' +
-                    '\n' +
-                    '                      </ul>';
-
-                $("#container2").append(ui)
-
+                $(".chat-child").remove()
                 for (var i = 0; i < data.length; i++) {
                     type = data[i].FromId == currentId ? 1 : 2
                     createChatHtmlNode(data[i].Content, data[i].SendTime, type)
@@ -626,11 +430,51 @@
                     '                                </li>'
 
                     $("#userList").append(userNode)
+                    $("#userList2").append(userNode)
+
                 }
 
             },
         });
     }
+
+
+    //获取用户列表
+    function getUsers() {
+        $.ajax({
+            type: "GET",
+            url: 'http://localhost:8080/users',
+            dataType: 'json',
+            success: function (data) {
+                $("#userList").children().remove()
+                for (var i = 0; i < data.length; i++) {
+                    userNode = '                                <li>\n' +
+                        '                                    <div class="status online"><img src="/static/dist/img/avatars/avatar-male-6.jpg"\n' +
+                        '                                                                    alt="avatar"><i data-eva="radio-button-on"></i>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="content">\n' +
+                        '                                        <h5>' + data[i].Name + '</h5>\n' +
+                        '                                        <span>' + data[i].Email + '</span>\n' +
+                        '                                    </div>\n' +
+                        '                                    <div class="custom-control">\n' +
+                        ' <button  onclick="ToFriendUserById(' + data[i].Id + ')" type="button" class="btn" data-toggle="modal"\n' +
+                        '                                                data-target="#compose"><i\n' +
+                        '                                                    data-eva="person-add" data-eva-animation="pulse">请求验证</i></button>'
+                    // '                                        <input type="button" onclick="ToFriendUserById(' + data[i].Id + ')" class="custom-control-input" id="user' + data[i].Id + '">\n' +
+                    // '                                        <label class="custom-control-label" for="user' + data[i].Id + '"></label>\n' +
+                    '                                    </div>\n' +
+                    '                                </li>'
+
+                    $("#userList").append(userNode)
+                    $("#userList2").append(userNode)
+
+                }
+
+            },
+        });
+    }
+
+
 
     //获取好友申请
     function GetApplications() {
@@ -639,8 +483,12 @@
             url: 'http://localhost:8080/user/apps',//被请求的API接口地址
             dataType: 'json',
             success: function (data) {
-                for (i=0;i<data.length;i++){
-                    addHandleFriendHtml(data[i].FromId,data[i].Remark)
+                $("#system_notices").children().remove()
+                if (data == null) {
+                    return
+                }
+                for (i = 0; i < data.length; i++) {
+                    addHandleFriendHtml(data[i].FromId, data[i].Remark)
                 }
             },
         });
@@ -713,7 +561,7 @@
     //动态增加好友请求模板
     function addHandleFriendHtml(user_id, content) {
         var addHandle = '<li">\n' +
-            '                                <p >' + content + ' <button style="color: red"  onclick=handleFriendApp(' + user_id + ',"'+content+'")>处理</button></p>\n' +
+            '                                <p >' + content + ' <button style="color: red"  onclick=handleFriendApp(' + user_id + ',"' + content + '")>处理</button></p>\n' +
             '                            </li>'
 
         //处理通过的模板
@@ -726,30 +574,33 @@
 
     }
 
-    function handleFriendApp(user_id,content) {
+    function handleFriendApp(user_id, content) {
         swal({
-            title : content,
-            text : "是同意呢还是同意呢",
-            icon : "info",
-            buttons : {
-                button1 : {
-                    text : "拒绝",
-                    value : false,
+            title: content,
+            text: "是同意呢还是同意呢",
+            icon: "info",
+            buttons: {
+                button1: {
+                    text: "拒绝",
+                    value: false,
                 },
-                button2 : {
-                    text : "同意",
-                    value : true,
+                button2: {
+                    text: "同意",
+                    value: true,
                 }
             },
-        }).then(function(value) {   //这里的value就是按钮的value值，只要对应就可以啦
+        }).then(function (value) {   //这里的value就是按钮的value值，只要对应就可以啦
             status = value == true ? 1 : 2
             $.ajax({
                 type: "POST",
                 url: 'http://localhost:8080/user/handleApp',
-                data: {from_id: user_id,status:status},
+                data: {from_id: user_id, status: status},
                 dataType: 'json',
                 success: function (data) {
-                    console.log(data)
+                    GetApplications()
+                    swal("处理成功", "", "success", {
+                        button: "继续"
+                    })
                 },
             });
         });
@@ -764,9 +615,7 @@
 
     //消息聊天到底最底部
     function msgScrollTOp() {
-        var now = new Date();
         var div = document.getElementById('scroll');
-        div.innerHTML = div.innerHTML + 'time_' + now.getTime() + '<br />';
         div.scrollTop = div.scrollHeight
     }
 

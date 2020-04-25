@@ -53,7 +53,6 @@ func UserMessages(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		to_id := r.PostFormValue("to_id")
-		fmt.Println(to_id)
 		messages,err := models.GetUserMessagesAll(sess.UserId, to_id)
 		if err !=nil{
 			danger(err.Error())

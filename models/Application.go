@@ -88,10 +88,18 @@ func HandleApp(from_id int, to_id int, add_type int, handle_status int) (app App
 		return
 	}
 	defer parpe.Close()
-	parpe.Exec(handle_status,from_id,to_id,add_type,0)
+	parpe.Exec(handle_status, from_id, to_id, add_type, 0)
 
-	Db.QueryRow("select * from applications where from_id=? and to_id=? and status >? order by updated_at",from_id,to_id,0).
+	//同意申请的话就添加好友关系
+	if handle_status == 1 {
+		if err := AddFriends(from_id, to_id); err != nil {
+			fmt.Println(err.Error())
+			return
+		}
+	}
+
+	Db.QueryRow("select * from applications where from_id=? and to_id=? and status >? order by updated_at", from_id, to_id, 0).
 		Scan(&app.Id, &app.FromId, &app.ToId,
-		&app.UserId, &app.Type, &app.Status, &app.Remark, &app.CreatedAt, &app.UpdatedAt)
+			&app.UserId, &app.Type, &app.Status, &app.Remark, &app.CreatedAt, &app.UpdatedAt)
 	return
 }

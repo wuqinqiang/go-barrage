@@ -136,8 +136,9 @@ func UserByUUID(uuid string) (user User, err error) {
 
 func UserByID(id int) (user User, err error) {
 	user = User{}
-	err = Db.QueryRow("select id,uuid,name,email,password,created_at FROM users WHERE id=?", id).
+	err = Db.QueryRow("select id,uuid,name,email,created_at FROM users WHERE id=?", id).
 		Scan(&user.Id, &user.Email, &user.Name, &user.Uuid, &user.CreatedAt)
+	fmt.Println(err)
 	return
 }
 

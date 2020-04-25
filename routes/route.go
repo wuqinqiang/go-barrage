@@ -151,7 +151,7 @@ var webRouters = WebRouters{
 		"/user/apps",
 		handlers.GetApplications,
 	},
-	//获取审核列表
+	//提交审核
 	{
 		"handleApp",
 		"POST",

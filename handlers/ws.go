@@ -123,7 +123,6 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 	//双向绑定
 	client_users[ws] = sess.UserId
 	user_clients[sess.UserId] = ws
-	fmt.Println("连接成功")
 	go Reader(ws, sess, r)
 	go SendClientMessage()
 }
