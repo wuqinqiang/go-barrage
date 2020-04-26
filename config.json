@@ -1,14 +1,14 @@
 {
   "App": {
-    "Address": "0.0.0.0:8080",
+    "Address": "127.0.0.1:8080",
     "Static": "public",
     "Log": "logs"
   },
   "Db": {
     "Driver": "mysql",
-    "Address": "192.168.10.10:3306",
+    "Address": "127.0.0.1:3306",
     "Database": "chitchat",
-    "User": "homestead",
-    "Password": "secret"
+    "User": "root",
+    "Password": "wqq96223"
   }
 }
