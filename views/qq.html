@@ -56,7 +56,7 @@
                         {{/*                        <button type="button" class="btn prepend"><i data-eva="search"></i></button>*/}}
                     </div>
                     <div class="middle">
-                        <h4>Discussions</h4>
+                        <h4>会话</h4>
                         <button onclick="getUsers()" type="button" class="btn round" data-toggle="modal"
                                 data-target="#compose"><i
                                     data-eva="edit-2"></i></button>
@@ -81,9 +81,9 @@
                                             <div class="content">
                                                 <div class="headline">
                                                     <h5>{{.FriendName}}</h5>
-                                                    <span>发送时间</span>
+                                                    <span id="unread_count{{.FriendId}}">未读消息:{{.UnreadMessage}}</span>
                                                 </div>
-                                                <p>发送内容</p>
+                                                <p>中国</p>
                                             </div>
                                         </a>
                                     </li>
@@ -96,13 +96,9 @@
                 <!-- Start of Friends -->
                 <div class="tab-pane fade" id="friends" role="tabpanel">
                     <div class="top">
-                        <form>
-                            <input type="search" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn prepend"><i data-eva="search"></i></button>
-                        </form>
                     </div>
                     <div class="middle">
-                        <h4>Friends</h4>
+                        <h4>好友列表</h4>
                         <hr>
                         <ul class="users">
                             {{with.Friends}}
@@ -131,13 +127,9 @@
                 <!-- Start of Notifications -->
                 <div class="tab-pane fade" id="notifications" role="tabpanel">
                     <div class="top">
-                        <form>
-                            <input type="search" class="form-control" placeholder="Search">
-                            <button type="submit" class="btn prepend"><i data-eva="search"></i></button>
-                        </form>
                     </div>
                     <div class="middle">
-                        <h4>Notifications</h4>
+                        <h4>消息通知</h4>
                         <hr>
                         <ul class="notifications" id="system_notices">
 
@@ -383,8 +375,11 @@
         var from_id = $(obj).parents("li").find("#from_id").val();
         var to_id = $(obj).parents("li").find("#to_id").val();
         var to_name = $(obj).parents("li").find("#to_name").val();
+        //未读消息清空
+        $("#unread_count"+to_id).text("未读消息:0")
         $("#current_name").text(to_name)
         sendId = currentId == from_id ? to_id : from_id;
+
         //查看消息记录
         $.ajax({
             type: "POST",
@@ -393,6 +388,9 @@
             dataType: 'json',
             success: function (data) {
                 $(".chat-child").remove()
+                if (data==null){
+                    return
+                }
                 for (var i = 0; i < data.length; i++) {
                     type = data[i].FromId == currentId ? 1 : 2
                     createChatHtmlNode(data[i].Content, data[i].SendTime, type)

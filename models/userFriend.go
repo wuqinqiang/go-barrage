@@ -22,7 +22,7 @@ func AddUnreadMessage(user_id int, friend_id int) (err error) {
 	}
 	defer parpe.Close()
 
-	_, err = parpe.Exec(user_id, friend_id)
+	_, err = parpe.Exec(friend_id,user_id)
 	if err != nil {
 		fmt.Println(err.Error())
 	}

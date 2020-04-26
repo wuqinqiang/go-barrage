@@ -2,3 +2,5 @@ WARNNIN 2020/04/25 21:51:48 helper.go:80: <nil> Failed to get cookie
 WARNNIN 2020/04/25 21:52:02 helper.go:80: <nil> Failed to get cookie
 WARNNIN 2020/04/25 22:08:00 helper.go:80: <nil> Failed to get cookie
 WARNNIN 2020/04/25 22:17:02 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/25 22:46:03 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/25 22:56:41 helper.go:75: Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from user_id=? and friend_id=?' at line 1
