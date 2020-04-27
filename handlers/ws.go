@@ -6,14 +6,13 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/wuqinqiang/chitchat/models"
 	"net/http"
-	"time"
 )
 
 type Msg struct {
 	Message     string    `json:"message"`
 	UserName    string    `json:"user_name"`
 	Type        int       `json:"type"`
-	CreatedAt   time.Time `json:"created_at"`
+	CreatedAt   string    `json:"created_at"`
 	ContentType int       `json:"content_type"`
 	To          int       `json:"to"`
 }
@@ -58,8 +57,6 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 				break
 			}
 			msg.UserName = user.Name
-			msg.CreatedAt = time.Now()
-
 			messageChannel <- msg
 		} else { //单聊或者群聊消息
 			 err := user.CreateChatMessage(msg.Message, msg.To, msg.Type, msg.ContentType)
@@ -69,8 +66,9 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 			}
 			////找到次客户端发送消息
 			client := user_clients[msg.To]
+
 			if client == nil {
-				//说明并没有登录，记录未读消息
+				//说明并没有登录，这条就算未读
 				err:=models.AddUnreadMessage(user.Id,msg.To)
 				if err !=nil{
 					danger(err.Error())

@@ -93,7 +93,7 @@ func UserDeleteAll() (err error) {
 }
 
 func Users(user_id int) (users []User, err error) {
-	rows, err := Db.Query("select id,uuid,name,email from users where id !=?", user_id)
+	rows, err := Db.Query("select id,uuid,name,email from users where id !=? ", user_id)
 	if err != nil {
 		return
 	}
@@ -139,52 +139,6 @@ func UserByID(id int) (user User, err error) {
 	err = Db.QueryRow("select id,uuid,name,email,created_at FROM users WHERE id=?", id).
 		Scan(&user.Id, &user.Email, &user.Name, &user.Uuid, &user.CreatedAt)
 	fmt.Println(err)
-	return
-}
-
-// Create a new thread
-func (user *User) CreateThread(topic string) (conv Thread, err error) {
-	statement := "insert into threads (uuid, topic, user_id, created_at) values (?, ?, ?, ?)"
-	stmtin, err := Db.Prepare(statement)
-	if err != nil {
-		return
-	}
-	defer stmtin.Close()
-
-	uuid := createUUID()
-	stmtin.Exec(uuid, topic, user.Id, time.Now())
-
-	stmtout, err := Db.Prepare("select id, uuid, topic, user_id, created_at from threads where uuid = ?")
-	if err != nil {
-		return
-	}
-	defer stmtout.Close()
-
-	// use QueryRow to return a row and scan the returned id into the Session struct
-	err = stmtout.QueryRow(uuid).Scan(&conv.Id, &conv.Uuid, &conv.Topic, &conv.UserId, &conv.CreatedAt)
-	return
-}
-
-// Create a new post to a thread
-func (user *User) CreatePost(conv Thread, body string) (post Post, err error) {
-	statement := "insert into posts (uuid, body, user_id, thread_id, created_at) values (?, ?, ?, ?, ?)"
-	stmtin, err := Db.Prepare(statement)
-	if err != nil {
-		return
-	}
-	defer stmtin.Close()
-
-	uuid := createUUID()
-	stmtin.Exec(uuid, body, user.Id, conv.Id, time.Now())
-
-	stmtout, err := Db.Prepare("select id, uuid, body, user_id, thread_id, created_at from posts where uuid = ?")
-	if err != nil {
-		return
-	}
-	defer stmtout.Close()
-
-	// use QueryRow to return a row and scan the returned id into the Session struct
-	err = stmtout.QueryRow(uuid).Scan(&post.Id, &post.Uuid, &post.Body, &post.UserId, &post.ThreadId, &post.CreatedAt)
 	return
 }
 
@@ -251,9 +205,9 @@ func (user *User) GetUserFriends() (friends []Friend) {
 /**
 to_id 发送对象 send_type 1单聊2群聊 content_type 1文本2文件。。。
 */
-func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) ( err error) {
+func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) (err error) {
 
-	var chatRecord=ChatRecord{}
+	var chatRecord = ChatRecord{}
 
 	//开启事务
 	tx, _ := Db.Begin()
@@ -265,7 +219,9 @@ func (user *User) CreateChatMessage(message string, to_id int, send_type int, co
 	}
 	defer stmin.Close()
 	uuid := createUUID()
-	stmin.Exec(uuid, time.Now(), message, user.Id, to_id, send_type, content_tpye)
+	cstSh, _ := time.LoadLocation("Asia/Shanghai")
+	local_time := time.Now().In(cstSh).Format("2006-01-02 15:04:05")
+	stmin.Exec(uuid, local_time, message, user.Id, to_id, send_type, content_tpye)
 	stmout, err := tx.Prepare("select * from chat_records where uuid=?")
 	if err != nil {
 		fmt.Println(err.Error())
@@ -279,6 +235,36 @@ func (user *User) CreateChatMessage(message string, to_id int, send_type int, co
 	//更新最后一次交流消息
 	if err := CreateLastRecord(user.Name, chatRecord, tx); err != nil {
 		fmt.Println(err.Error())
+	}
+
+	return
+}
+
+//统计用户未读消息数
+func (user *User) SumUnRead() (unRead int) {
+	paper:="select sum(unread_message) from user_friends where user_id=? and unread_message >0"
+
+	statout,err:=Db.Prepare(paper)
+
+	defer statout.Close()
+	statout .QueryRow(user.Id).Scan(&unRead)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
+	}
+	return
+}
+
+//统计用户未处理请求
+func (user *User) SumUnHandle() (unHandle int) {
+	paper:="select count(*) from applications where user_id=? and status=?"
+
+	statout,err:=Db.Prepare(paper)
+	defer statout.Close();
+	statout .QueryRow(user.Id,0).Scan(&unHandle)
+	if err != nil {
+		fmt.Println(err.Error())
+		return
 	}
 	return
 }

@@ -7,3 +7,28 @@ ERROR 2020/04/25 22:56:41 helper.go:75: Error 1064: You have an error in your SQ
 WARNNIN 2020/04/27 10:12:45 helper.go:80: <nil> Failed to get cookie
 WARNNIN 2020/04/27 10:16:33 helper.go:80: <nil> Failed to get cookie
 ERROR 2020/04/27 11:20:40 helper.go:75: Error 1366: Incorrect integer value: '你好' for column 'from_id' at row 1
+WARNNIN 2020/04/27 13:51:38 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 15:31:49 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:16:49 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/27 20:16:55 helper.go:75: sql: no rows in result set cannot find user
+WARNNIN 2020/04/27 20:29:20 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:32:23 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:27 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:27 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:27 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:28 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:28 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:28 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:33 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:33 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:38:33 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:40:03 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:40:19 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:40:55 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:45:07 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:46:08 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:47:11 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:47:54 helper.go:80: <nil> Failed to get cookie
+WARNNIN 2020/04/27 20:48:25 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/27 20:53:40 helper.go:75: sql: no rows in result set
+ERROR 2020/04/27 20:53:53 helper.go:75: sql: no rows in result set

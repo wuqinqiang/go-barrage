@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/wuqinqiang/chitchat/models"
 	"net/http"
 )
@@ -44,13 +45,13 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	user, err := models.UserByEmail(r.PostFormValue("email"))
 	if err != nil {
-		danger(err,"cannot find user")
+		danger(err, "cannot find user")
 	}
 	if user.Password == models.Encrypt(r.PostFormValue("password")) {
 		session, err := user.CreateSession()
 		if err != nil {
-			danger(err,"cannot create session")
-			}
+			danger(err, "cannot create session")
+		}
 		cookie := http.Cookie{
 			Name:     "_cookie",
 			Value:    session.Uuid,
@@ -59,7 +60,6 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 		http.SetCookie(w, &cookie)
 		http.Redirect(w, r, "/", 302)
 	} else {
-
 		http.Redirect(w, r, "/login", 302)
 	}
 
@@ -68,11 +68,20 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 //GET /logout
 //用户退出
 func Logout(w http.ResponseWriter, r *http.Request) {
+	sess, err := session(w, r);
 	cookie, err := r.Cookie("_cookie")
 	if err != http.ErrNoCookie {
-		warning(err,"Failed to get cookie")
+		warning(err, "Failed to get cookie")
 		session := models.Session{Uuid: cookie.Value}
 		session.DeleteByUUID()
+		user, _ := sess.User()
+		fmt.Println(user_clients)
+		if user.Id > 0 {
+			client := user_clients[user.Id]
+			if client != nil {
+				CloseClient(client)
+			}
+		}
 	}
 
 	http.Redirect(w, r, "/", 302)

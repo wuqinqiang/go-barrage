@@ -10,9 +10,11 @@ import (
 )
 
 type ChatInfo struct {
-	CurrentId int
-	Records   [] models.LastRecord
-	Friends   [] models.Friend
+	CurrentId   int
+	Records     [] models.LastRecord
+	Friends     [] models.Friend
+	UnReadCount int  //未读消息
+	UnHandleCount    int  //未处理请求
 }
 
 func ChatIndex(w http.ResponseWriter, r *http.Request) {
@@ -26,8 +28,10 @@ func ChatIndex(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		chatInfo := ChatInfo{
-			Friends:   user.GetUserFriends(),
-			CurrentId: user.Id, //当前登录用户id
+			Friends:     user.GetUserFriends(),
+			CurrentId:   user.Id, //当前登录用户id
+			UnReadCount: user.SumUnRead(),
+			UnHandleCount:    user.SumUnHandle(),
 		}
 		tem, err := template.ParseFiles("views/qq.html")
 
@@ -53,8 +57,8 @@ func UserMessages(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		to_id := r.PostFormValue("to_id")
-		messages,err := models.GetUserMessagesAll(sess.UserId, to_id)
-		if err !=nil{
+		messages, err := models.GetUserMessagesAll(sess.UserId, to_id)
+		if err != nil {
 			danger(err.Error())
 			return
 		}

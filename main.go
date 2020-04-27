@@ -11,7 +11,6 @@ import (
 
 func startWebServer(port string) {
 	r := NewRoute()
-
 	config := LoadConfig()
 	//处理静态文件
 	assets := http.FileServer(http.Dir(config.App.Static))

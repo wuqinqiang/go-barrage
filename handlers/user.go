@@ -58,6 +58,20 @@ func Users(w http.ResponseWriter, r *http.Request) {
 	io.WriteString(w, string(res))
 }
 
+//获取用户的好友列表
+func UserFirends(w http.ResponseWriter, r *http.Request) {
+	sess, err := session(w, r)
+	if err != nil {
+		http.Redirect(w, r, "/login", 302)
+	}
+	user, _ := sess.User()
+	friends := user.GetUserFriends()
+	res, _ := json.Marshal(friends)
+	io.WriteString(w, string(res))
+}
+
+
+
 //加好友
 func CreateFriend(w http.ResponseWriter, r *http.Request) {
 	sess, err := session(w, r)

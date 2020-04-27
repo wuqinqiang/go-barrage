@@ -62,41 +62,11 @@ var webRouters = WebRouters{
 		handlers.Logout,
 	},
 	{
-		"newThread",
-		"GET",
-		"/thread/new",
-		handlers.NewThread,
-	},
-	{
-		"createThread",
-		"POST",
-		"/thread/create",
-		handlers.CreateThread,
-	},
-	{
-		"readThread",
-		"GET",
-		"/thread/read",
-		handlers.ReadThread,
-	},
-	{
-		"postThread",
-		"POST",
-		"/thread/post",
-		handlers.PostThread,
-	},
-	{
 		"error",
 		"GET",
 		"/err",
 		handlers.Err,
 	},
-	//{
-	//	"chat",
-	//	"GET",
-	//	"/chat",
-	//	handlers.ChatRoom,
-	//},
 	{
 		"postChat",
 		"POST",
@@ -129,6 +99,13 @@ var webRouters = WebRouters{
 		"GET",
 		"/users",
 		handlers.Users,
+	},
+	//获取用户好友列表
+	{
+		"getFriends",
+		"GET",
+		"/friends",
+		handlers.UserFirends,
 	},
 	//查找指定用户
 	{
