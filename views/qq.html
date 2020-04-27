@@ -501,12 +501,11 @@
             dataType: 'json',
             success: function (data) {
                 $("#app-counts").children(".sum_notes").html('')
+                $("#system_notices").children().remove()
                 if (data == null) {
                     $("#app-counts").children(".sum_notes").append(0)
                     return
                 }
-
-                $("#system_notices").children().remove()
 
                 $("#app-counts").children(".sum_notes").append(data.length)
                 for (i = 0; i < data.length; i++) {
