@@ -31,7 +31,7 @@
 
         $.ajax({
             type: "GET",
-            url: 'http://room.aabbccm.com/chat/messages',//被请求的API接口地址
+            url: 'http://localhost:8080/chat/messages',//被请求的API接口地址
             dataType: 'json',
             success: function (data) {
 
@@ -54,7 +54,7 @@
                 swal("已连接成功，请勿重复连接!", "继续", "error");
                 return
             }
-            wsServer = 'ws://room.aabbccm.com/ws';
+            wsServer = 'ws://localhost:8080/ws';
 
             websocket = new WebSocket(wsServer);
 
