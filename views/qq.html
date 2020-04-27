@@ -505,6 +505,9 @@
                     $("#app-counts").children(".sum_notes").append(0)
                     return
                 }
+
+                $("#system_notices").children().remove()
+
                 $("#app-counts").children(".sum_notes").append(data.length)
                 for (i = 0; i < data.length; i++) {
                     addHandleFriendHtml(data[i].FromId, data[i].Remark)
