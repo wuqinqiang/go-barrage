@@ -81,8 +81,9 @@ func GetUserApplications(user_id int, add_type int) (apps [] Application) {
 
 //同意拒绝
 func HandleApp(from_id int, to_id int, add_type int, handle_status int) (app Application) {
+	tx,_:=Db.Begin()
 	state := "update applications set status=? where from_id=? and to_id=? and type=? and status=?"
-	parpe, err := Db.Prepare(state)
+	parpe, err := tx.Prepare(state)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -92,7 +93,7 @@ func HandleApp(from_id int, to_id int, add_type int, handle_status int) (app App
 
 	//同意申请的话就添加好友关系
 	if handle_status == 1 {
-		if err := AddFriends(from_id, to_id); err != nil {
+		if err := AddFriends(from_id, to_id,tx); err != nil {
 			fmt.Println(err.Error())
 			return
 		}

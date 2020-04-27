@@ -23,7 +23,7 @@ var webRouters = WebRouters{
 		"home",
 		"GET",
 		"/",
-		handlers.Index,
+		handlers.ChatRoom,
 	},
 	{
 		"ws",
@@ -91,12 +91,12 @@ var webRouters = WebRouters{
 		"/err",
 		handlers.Err,
 	},
-	{
-		"chat",
-		"GET",
-		"/chat",
-		handlers.ChatRoom,
-	},
+	//{
+	//	"chat",
+	//	"GET",
+	//	"/chat",
+	//	handlers.ChatRoom,
+	//},
 	{
 		"postChat",
 		"POST",

@@ -6,9 +6,9 @@
   },
   "Db": {
     "Driver": "mysql",
-    "Address": "127.0.0.1:3306",
+    "Address": "192.168.10.10:3306",
     "Database": "chitchat",
-    "User": "root",
-    "Password": "wqq96223"
+    "User": "homestead",
+    "Password": "secret"
   }
 }

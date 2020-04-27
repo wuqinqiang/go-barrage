@@ -93,7 +93,7 @@ func UserDeleteAll() (err error) {
 }
 
 func Users(user_id int) (users []User, err error) {
-	rows, err := Db.Query("select id,uuid,name,email from users where id !=?",user_id)
+	rows, err := Db.Query("select id,uuid,name,email from users where id !=?", user_id)
 	if err != nil {
 		return
 	}
@@ -119,9 +119,9 @@ func UserName(name string) (user User, err error) {
 	user = User{}
 	err = Db.QueryRow("select id,uuid,name,email from users where name=?", name).
 		Scan(&user.Id, &user.Uuid, &user.Name, &user.Email)
-	if err !=nil{
+	if err != nil {
 		fmt.Println(err.Error())
-		return ;
+		return;
 	}
 
 	return
@@ -251,9 +251,14 @@ func (user *User) GetUserFriends() (friends []Friend) {
 /**
 to_id 发送对象 send_type 1单聊2群聊 content_type 1文本2文件。。。
 */
-func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) (chatRecord ChatRecord, err error) {
+func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) ( err error) {
+
+	var chatRecord=ChatRecord{}
+
+	//开启事务
+	tx, _ := Db.Begin()
 	statement := "insert into chat_records (uuid,send_time,content,from_id,to_id,type,content_type) value(?,?,?,?,?,?,?)"
-	stmin, err := Db.Prepare(statement)
+	stmin, err := tx.Prepare(statement)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -261,13 +266,19 @@ func (user *User) CreateChatMessage(message string, to_id int, send_type int, co
 	defer stmin.Close()
 	uuid := createUUID()
 	stmin.Exec(uuid, time.Now(), message, user.Id, to_id, send_type, content_tpye)
-	stmout, err := Db.Prepare("select * from chat_records where uuid=?")
+	stmout, err := tx.Prepare("select * from chat_records where uuid=?")
 	if err != nil {
 		fmt.Println(err.Error())
 		return
 	}
+
 	defer stmout.Close()
 	stmout.QueryRow(uuid).Scan(&chatRecord.Id, &chatRecord.Uuid, &chatRecord.SendTime,
 		&chatRecord.Content, &chatRecord.FromId, &chatRecord.ToId, &chatRecord.Type, &chatRecord.ContentType)
+
+	//更新最后一次交流消息
+	if err := CreateLastRecord(user.Name, chatRecord, tx); err != nil {
+		fmt.Println(err.Error())
+	}
 	return
 }

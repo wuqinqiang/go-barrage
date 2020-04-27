@@ -145,7 +145,7 @@
     <!-- End of Sidebar -->
     <!-- Start of Chat -->
     <div class="chat">
-        <div class="tab-content">
+        <div class="tab-content" id="then-chat" style="display: none">
             <!-- Start of Chat Room -->
             <div class="tab-pane fade show active" id="chat1" role="tabpanel">
                 <div class="item">
@@ -368,9 +368,13 @@
 
     }
 
+    var index_chat='<div class="index-chat">你好啊</div>';
+    $(".chat").append(index_chat)
 
     //切换聊天对象的时候更新当前将要聊天对象的user_Id
     function change_user(obj) {
+        $(".chat").children('.index-chat').remove()
+        $("#then-chat").show()
         currentId = $("#current_id").val();
         var from_id = $(obj).parents("li").find("#from_id").val();
         var to_id = $(obj).parents("li").find("#to_id").val();

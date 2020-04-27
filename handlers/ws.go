@@ -62,12 +62,8 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 
 			messageChannel <- msg
 		} else { //单聊或者群聊消息
-			chat, err := user.CreateChatMessage(msg.Message, msg.To, msg.Type, msg.ContentType)
+			 err := user.CreateChatMessage(msg.Message, msg.To, msg.Type, msg.ContentType)
 			if err != nil {
-				danger(err.Error())
-				break
-			}
-			if err := models.CreateLastRecord(user.Name, chat); err != nil {
 				danger(err.Error())
 				break
 			}
