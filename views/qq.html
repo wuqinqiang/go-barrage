@@ -162,18 +162,18 @@
     <!-- End of Sidebar -->
     <!-- Start of Chat -->
     <div class="chat">
-        <div class="tab-content" id="then-chat" style="display: none">
+        <div class="tab-content" id="then-chat" >
             <!-- Start of Chat Room -->
             <div class="tab-pane fade show active" id="chat1" role="tabpanel">
                 <div class="item">
                     <div class="content">
                         <div class="container">
                             <div class="top">
-                                <div class="headline">
+                                <div class="headline" id="headline-show">
                                     <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">
                                     <div class="content">
-                                        <h5 id="current_name">Quincy Hensen</h5>
-                                        <span>Away</span>
+                                        <h5 id="current_name">我在等你</h5>
+                                        <span>如果喜欢❤️，帮忙点个star→<a href="https://github.com/wuqinqiang/go-barrage">Github</a></span>
                                     </div>
                                 </div>
                                 <ul>
@@ -213,13 +213,13 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="middle" id="scroll" style="overflow:auto">
+                        <div  class="middle" style="display: none" id="scroll" style="overflow:auto">
                             <div class="container" id="container2">
                                 <ul class="chat-list">
                                 </ul>
                             </div>
                         </div>
-                        <div class="container">
+                        <div style="display: none" id="bottom-show" class="container">
                             <div class="bottom">
                                 <form>
                                     <textarea id="chat-text" class="form-control" placeholder="Type message..."
@@ -378,14 +378,11 @@
 
     }
 
-    var index_chat = '<div class="index-chat">你好啊</div>';
-    $(".chat").append(index_chat)
-
     //切换聊天对象的时候更新当前将要聊天对象的user_Id
     function change_user(obj, un = 0) {
         $(".chat").children('.index-chat').remove()
-        $("#then-chat").show()
-
+        $("#bottom-show").show()
+        $("#scroll").show()
         //点开表示读消息 对应未读数减去
         sum = $("#un-message").text()
         if (sum <= 0) {
