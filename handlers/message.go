@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"github.com/wuqinqiang/chitchat/models"
+	"html/template"
 	"io"
 	"net/http"
 )
@@ -49,7 +50,8 @@ func SendMessage(w http.ResponseWriter, r *http.Request) {
 			warning("cannot find user")
 		}
 		ip := RemoteIP(r)
-		content := r.PostFormValue("message")
+		content := template.HTMLEscapeString(r.PostFormValue("message"))
+
 		if _, err := user.CreateMessage(ip, content, 1); err != nil {
 			warning("send message error")
 		}

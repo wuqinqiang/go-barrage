@@ -2,6 +2,7 @@ package models
 
 import (
 	"fmt"
+	"html/template"
 	"time"
 )
 
@@ -206,6 +207,8 @@ func (user *User) GetUserFriends() (friends []Friend) {
 to_id 发送对象 send_type 1单聊2群聊 content_type 1文本2文件。。。
 */
 func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) (err error) {
+
+	message= template.HTMLEscapeString(message)
 
 	var chatRecord = ChatRecord{}
 
