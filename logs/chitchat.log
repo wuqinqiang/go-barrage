@@ -34,3 +34,12 @@ ERROR 2020/04/27 20:53:40 helper.go:75: sql: no rows in result set
 ERROR 2020/04/27 20:53:53 helper.go:75: sql: no rows in result set
 WARNNIN 2020/04/27 22:33:51 helper.go:80: <nil> Failed to get cookie
 WARNNIN 2020/04/27 22:35:32 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/28 10:17:48 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
+ERROR 2020/04/28 10:17:52 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
+ERROR 2020/04/28 10:17:57 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
+ERROR 2020/04/28 10:18:17 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
+ERROR 2020/04/28 10:18:47 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
+WARNNIN 2020/04/28 10:19:38 helper.go:80: <nil> Failed to get cookie
+ERROR 2020/04/28 10:19:45 helper.go:75: sql: no rows in result set cannot find user
+ERROR 2020/04/28 10:20:03 helper.go:75: sql: no rows in result set cannot find user
+ERROR 2020/04/28 10:20:10 helper.go:75: sql: no rows in result set cannot find user
