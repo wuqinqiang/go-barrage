@@ -1,15 +1,14 @@
 package main
 
 import (
-	. "github.com/wuqinqiang/chitchat/config"
-	. "github.com/wuqinqiang/chitchat/routes"
 	"log"
 	"net/http"
+
+	. "github.com/wuqinqiang/chitchat/config"
+	. "github.com/wuqinqiang/chitchat/routes"
 )
 
-
-
-func startWebServer(port string) {
+func startWebServer() {
 	r := NewRoute()
 	config := LoadConfig()
 	//处理静态文件
@@ -27,5 +26,5 @@ func startWebServer(port string) {
 }
 
 func main() {
-	startWebServer("8080")
+	startWebServer()
 }
