@@ -23,6 +23,7 @@ func session(writer http.ResponseWriter, request *http.Request) (sess models.Ses
 		if ok, _ := sess.Check(); !ok {
 			err = errors.New("invalid session")
 		}
+
 	}
 	return
 }

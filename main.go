@@ -9,7 +9,7 @@ import (
 
 
 
-func startWebServer(port string) {
+func startWebServer() {
 	r := NewRoute()
 	config := LoadConfig()
 	//处理静态文件
@@ -27,5 +27,5 @@ func startWebServer(port string) {
 }
 
 func main() {
-	startWebServer("8080")
+	startWebServer()
 }

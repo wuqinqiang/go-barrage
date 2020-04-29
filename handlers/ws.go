@@ -28,7 +28,8 @@ var upgrader = websocket.Upgrader{
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
 	//当前预先任何连接
-	CheckOrigin: func(r *http.Request) bool { return true },
+	CheckOrigin: func(r *http.Request) bool {
+		return true },
 }
 
 //读取发送的消息
@@ -109,6 +110,7 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 	}
 
 	//将此连接升级为ws
+
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
 		warning(err.Error())
@@ -126,3 +128,4 @@ func CloseClient(client *websocket.Conn) {
 	delete(user_clients, client_users[client])
 	delete(client_users, client)
 }
+

@@ -43,3 +43,7 @@ WARNNIN 2020/04/28 10:19:38 helper.go:80: <nil> Failed to get cookie
 ERROR 2020/04/28 10:19:45 helper.go:75: sql: no rows in result set cannot find user
 ERROR 2020/04/28 10:20:03 helper.go:75: sql: no rows in result set cannot find user
 ERROR 2020/04/28 10:20:10 helper.go:75: sql: no rows in result set cannot find user
+WARNNIN 2020/04/28 22:49:49 helper.go:81: websocket: request origin not allowed by Upgrader.CheckOrigin
+WARNNIN 2020/04/28 22:51:27 helper.go:81: websocket: request origin not allowed by Upgrader.CheckOrigin
+ERROR 2020/04/29 09:16:26 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
+ERROR 2020/04/29 09:16:30 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out

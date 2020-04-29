@@ -130,6 +130,7 @@ func UserName(name string) (user User, err error) {
 
 func UserByUUID(uuid string) (user User, err error) {
 	user = User{}
+
 	err = Db.QueryRow("select id,uuid,name,email,password,created_at FROM users WHERE uuid=?", uuid).
 		Scan(&user.Id, &user.Email, &user.Name, &user.Uuid, &user.CreatedAt)
 	return
