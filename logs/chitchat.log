@@ -47,3 +47,4 @@ WARNNIN 2020/04/28 22:49:49 helper.go:81: websocket: request origin not allowed 
 WARNNIN 2020/04/28 22:51:27 helper.go:81: websocket: request origin not allowed by Upgrader.CheckOrigin
 ERROR 2020/04/29 09:16:26 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
 ERROR 2020/04/29 09:16:30 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
+ERROR 2020/04/29 15:03:33 helper.go:76: websocket: close sent

@@ -338,8 +338,12 @@
     };
 
     websocket.onmessage = function (evt) {
+        if (evt.data == 'ping') {
+            return
+        }
         // 处理接收的消息
         let param = JSON.parse(evt.data);
+
         if (typeof (param.Remark) == "undefined") { //普通聊天消息
             createChatHtmlNode(param.message, param.created_at, 2)
             msgScrollTOp()

@@ -6,6 +6,7 @@ import (
 	"github.com/wuqinqiang/chitchat/models"
 	"net/http"
 	"sync"
+	"time"
 )
 
 type Msg struct {
@@ -125,6 +126,19 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 	rwlocker.Unlock()
 	go Reader(ws, sess, r)
 	go SendClientMessage()
+	go sendPing(ws)
+}
+
+//我就是要服务端发送ping
+func sendPing(client *websocket.Conn) {
+	for {
+		if err := client.WriteMessage(websocket.TextMessage,[]byte("ping")); err != nil {
+			danger(err.Error())
+			CloseClient(client)
+			break
+		}
+		time.Sleep(20 * time.Second)
+	}
 }
 
 func CloseClient(client *websocket.Conn) {
