@@ -2,14 +2,15 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/wuqinqiang/chitchat/models"
 	"net/http"
+
+	"github.com/wuqinqiang/chitchat/models"
 )
 
 //GET /login
 //登录页面
 func Login(w http.ResponseWriter, r *http.Request) {
-	t := parseTemplateFiles("auth.layout", "navbar", "login")
+	t := parseTemplateFiles("auth.layout", "login")
 	t.Execute(w, nil)
 
 }
@@ -17,7 +18,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 //GET /signup
 //注册页面
 func Signup(w http.ResponseWriter, r *http.Request) {
-	generateHTML(w, nil, "auth.layout", "navbar", "signup")
+	generateHTML(w, nil, "auth.layout", "signup")
 }
 
 //POST /signup
@@ -68,7 +69,7 @@ func Authenticate(w http.ResponseWriter, r *http.Request) {
 //GET /logout
 //用户退出
 func Logout(w http.ResponseWriter, r *http.Request) {
-	sess, err := session(w, r);
+	sess, err := session(w, r)
 	cookie, err := r.Cookie("_cookie")
 	if err != http.ErrNoCookie {
 		warning(err, "Failed to get cookie")
