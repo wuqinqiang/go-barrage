@@ -66,3 +66,13 @@ ERROR 2020/04/29 18:02:21 helper.go:76: sql: no rows in result set cannot find u
 ERROR 2020/04/29 18:02:26 helper.go:76: write tcp [::1]:8080->[::1]:49583: use of closed network connection
 ERROR 2020/04/29 18:04:27 helper.go:76: websocket: close sent
 ERROR 2020/04/29 18:05:15 helper.go:76: websocket: close sent
+ERROR 2020/04/29 18:09:22 helper.go:76: websocket: close sent
+ERROR 2020/04/29 18:10:53 helper.go:76: websocket: close sent
+ERROR 2020/04/29 18:12:27 helper.go:76: websocket: close sent
+ERROR 2020/04/29 18:12:46 helper.go:76: websocket: close sent
+ERROR 2020/04/29 18:21:17 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52356: use of closed network connection
+ERROR 2020/04/29 18:21:20 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52455: use of closed network connection
+ERROR 2020/04/29 18:21:38 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52524: use of closed network connection
+ERROR 2020/04/29 18:21:44 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52553: use of closed network connection
+ERROR 2020/04/29 18:21:46 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52558: use of closed network connection
+ERROR 2020/04/29 18:24:07 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:53146: use of closed network connection

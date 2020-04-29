@@ -16,6 +16,7 @@ type Msg struct {
 	CreatedAt   string `json:"created_at"`
 	ContentType int    `json:"content_type"`
 	To          int    `json:"to"`
+	From        int    `json:"from"`
 }
 
 var client_users = make(map[*websocket.Conn]int) //客户端连接绑定user_id
@@ -68,10 +69,12 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 				danger(err.Error())
 				break
 			}
+			msg.From = user.Id
 			////找到客户端发送消息
 			rwlocker.RLock()
 			client := user_clients[msg.To]
 			rwlocker.RUnlock()
+
 			if client == nil {
 				//说明并没有登录，这条就算未读
 				err := models.AddUnreadMessage(user.Id, msg.To)
@@ -132,7 +135,7 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 //我就是要服务端发送ping
 func sendPing(client *websocket.Conn) {
 	for {
-		if err := client.WriteMessage(websocket.TextMessage,[]byte("ping")); err != nil {
+		if err := client.WriteMessage(websocket.TextMessage, []byte("ping")); err != nil {
 			danger(err.Error())
 			CloseClient(client)
 			break

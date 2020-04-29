@@ -100,7 +100,7 @@
                                                     <h5>{{.FriendName}}</h5>
                                                     <span id="unread_count{{.FriendId}}">未读消息:{{.UnreadMessage}}</span>
                                                 </div>
-                                                <p>{{.LastMessage.Content}}</p>
+                                                <p id="last-message{{.FriendId}}">{{.LastMessage.Content}}</p>
                                             </div>
                                         </a>
                                     </li>
@@ -323,7 +323,7 @@
     var websocket
     var currentId
 
-    var sendId = 1 //发送对象
+    var sendId = 0 //发送对象
     wsServer = 'ws://localhost:8080/ws';
 
     websocket = new WebSocket(wsServer);
@@ -343,14 +343,13 @@
         }
         // 处理接收的消息
         let param = JSON.parse(evt.data);
-
         if (typeof (param.Remark) == "undefined") { //普通聊天消息
             createChatHtmlNode(param.message, param.created_at, 2)
+            $("#last-message"+param.from).html(param.message)
             msgScrollTOp()
         } else {
             swal("您有新的好友请求");
             addHandleFriendHtml(param.FromId, param.Remark)
-            //   console.log("这是好友申请的消息")
         }
 
 
@@ -376,9 +375,20 @@
             })
             return
         }
+        if (sendId == 0) {
+            swal("请选择发送对象", "", "error", {
+                button: "继续"
+            })
+            return
+        }
+
+        $("#last-message"+sendId).html(content)
+
 
         var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': 1};
         this.wsSend(info);
+
+
         $("#chat-text").val("")
 
         //添加聊天
