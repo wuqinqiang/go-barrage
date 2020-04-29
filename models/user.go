@@ -185,11 +185,19 @@ func (user *User) GetReCordFriends() (records []LastRecord) {
 	return
 }
 
-//用户好友列表
+//用户好友列表并且获取双方最后一条记录
+//coalesce(l.id,0) as id,coalesce(l.from_id,0)
+//这里为什么要这样 https://github.com/go-sql-driver/mysql/issues/34
+//这里需要连表查询双方之间最后一条记录 left join
+//如果从未聊过天连表之后 last_record 结果必然是null
+//再 Scan NULL值到int 或者string的报错
+//sql: Scan error on column index 1: unsupported Scan, storing driver.Value type <nil> into type *string
+//一种解决方案是 LastRecord的类型用sqlNULL***代替
+//另一种就是从数据库层面解决 就是现在这个
 func (user *User) GetUserFriends() (friends []Friend) {
 	rows, err := Db.Query(
-		"select u.*, coalesce(l.id,0) as id,coalesce(l.from_id,0) as from_id,coalesce(l.to_id,0) as to_id,coalesce(l.content,' ') as ' 22'  from user_friends u left join last_records l " +
-			"on (u.user_id=l.from_id and u.friend_id=l.to_id) where u.user_id=?", user.Id)
+		"select u.*, coalesce(l.id,0) as id,coalesce(l.from_id,0) as from_id,coalesce(l.to_id,0) as to_id,coalesce(l.content,' ') as ' 22'  from user_friends u left join last_records l "+
+			"on (u.user_id=l.from_id and u.friend_id=l.to_id or  u.user_id=l.to_id and u.friend_id=l.from_id) where u.user_id=?", user.Id)
 	if err != nil {
 		fmt.Println(err.Error())
 		return

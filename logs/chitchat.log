@@ -60,3 +60,9 @@ ERROR 2020/04/29 17:06:03 helper.go:76: websocket: close sent
 WARNNIN 2020/04/29 17:07:36 helper.go:81: <nil> Failed to get cookie
 ERROR 2020/04/29 17:07:44 helper.go:76: websocket: close sent
 ERROR 2020/04/29 17:07:46 helper.go:76: write tcp [::1]:8080->[::1]:55962: use of closed network connection
+ERROR 2020/04/29 17:37:11 helper.go:76: websocket: close sent
+WARNNIN 2020/04/29 18:02:10 helper.go:81: <nil> Failed to get cookie
+ERROR 2020/04/29 18:02:21 helper.go:76: sql: no rows in result set cannot find user
+ERROR 2020/04/29 18:02:26 helper.go:76: write tcp [::1]:8080->[::1]:49583: use of closed network connection
+ERROR 2020/04/29 18:04:27 helper.go:76: websocket: close sent
+ERROR 2020/04/29 18:05:15 helper.go:76: websocket: close sent
