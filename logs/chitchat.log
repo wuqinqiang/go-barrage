@@ -48,3 +48,15 @@ WARNNIN 2020/04/28 22:51:27 helper.go:81: websocket: request origin not allowed 
 ERROR 2020/04/29 09:16:26 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
 ERROR 2020/04/29 09:16:30 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
 ERROR 2020/04/29 15:03:33 helper.go:76: websocket: close sent
+ERROR 2020/04/29 15:45:10 helper.go:76: websocket: close sent
+ERROR 2020/04/29 15:45:12 helper.go:76: websocket: close sent
+ERROR 2020/04/29 15:46:01 helper.go:76: websocket: close sent
+ERROR 2020/04/29 15:56:22 helper.go:76: websocket: close sent
+WARNNIN 2020/04/29 17:05:19 helper.go:81: <nil> Failed to get cookie
+WARNNIN 2020/04/29 17:05:48 helper.go:81: <nil> Failed to get cookie
+ERROR 2020/04/29 17:05:51 helper.go:76: websocket: close sent
+WARNNIN 2020/04/29 17:05:59 helper.go:81: <nil> Failed to get cookie
+ERROR 2020/04/29 17:06:03 helper.go:76: websocket: close sent
+WARNNIN 2020/04/29 17:07:36 helper.go:81: <nil> Failed to get cookie
+ERROR 2020/04/29 17:07:44 helper.go:76: websocket: close sent
+ERROR 2020/04/29 17:07:46 helper.go:76: write tcp [::1]:8080->[::1]:55962: use of closed network connection

@@ -6,4 +6,5 @@ type Friend struct {
 	FriendId      int
 	FriendName    string
 	UnreadMessage int
+	LastMessage    LastRecord
 }

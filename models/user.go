@@ -187,15 +187,22 @@ func (user *User) GetReCordFriends() (records []LastRecord) {
 
 //用户好友列表
 func (user *User) GetUserFriends() (friends []Friend) {
-	rows, err := Db.Query("select * from user_friends where user_id=?", user.Id)
+	rows, err := Db.Query(
+		"select u.*, coalesce(l.id,0) as id,coalesce(l.from_id,0) as from_id,coalesce(l.to_id,0) as to_id,coalesce(l.content,' ') as ' 22'  from user_friends u left join last_records l " +
+			"on (u.user_id=l.from_id and u.friend_id=l.to_id) where u.user_id=?", user.Id)
 	if err != nil {
-		fmt.Println("can not find friend")
+		fmt.Println(err.Error())
 		return
 	}
 	for rows.Next() {
 		friend := Friend{}
-		if err := rows.Scan(&friend.Id, &friend.UserId, &friend.FriendId, &friend.FriendName, &friend.UnreadMessage); err != nil {
-			fmt.Println("can not find friend")
+		if err := rows.Scan(&friend.Id, &friend.UserId, &friend.FriendId,
+			&friend.FriendName, &friend.UnreadMessage,
+			&friend.LastMessage.Id, &friend.LastMessage.FromId,
+			&friend.LastMessage.ToId, &friend.LastMessage.Content,
+
+		); err != nil {
+			fmt.Println(err.Error())
 			return
 		}
 		friends = append(friends, friend)
@@ -209,7 +216,7 @@ to_id 发送对象 send_type 1单聊2群聊 content_type 1文本2文件。。。
 */
 func (user *User) CreateChatMessage(message string, to_id int, send_type int, content_tpye int) (err error) {
 
-	message= template.HTMLEscapeString(message)
+	message = template.HTMLEscapeString(message)
 
 	var chatRecord = ChatRecord{}
 
@@ -246,12 +253,12 @@ func (user *User) CreateChatMessage(message string, to_id int, send_type int, co
 
 //统计用户未读消息数
 func (user *User) SumUnRead() (unRead int) {
-	paper:="select sum(unread_message) from user_friends where user_id=? and unread_message >0"
+	paper := "select sum(unread_message) from user_friends where user_id=? and unread_message >0"
 
-	statout,err:=Db.Prepare(paper)
+	statout, err := Db.Prepare(paper)
 
 	defer statout.Close()
-	statout .QueryRow(user.Id).Scan(&unRead)
+	statout.QueryRow(user.Id).Scan(&unRead)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
@@ -261,11 +268,11 @@ func (user *User) SumUnRead() (unRead int) {
 
 //统计用户未处理请求
 func (user *User) SumUnHandle() (unHandle int) {
-	paper:="select count(*) from applications where user_id=? and status=?"
+	paper := "select count(*) from applications where user_id=? and status=?"
 
-	statout,err:=Db.Prepare(paper)
+	statout, err := Db.Prepare(paper)
 	defer statout.Close();
-	statout .QueryRow(user.Id,0).Scan(&unHandle)
+	statout.QueryRow(user.Id, 0).Scan(&unHandle)
 	if err != nil {
 		fmt.Println(err.Error())
 		return
