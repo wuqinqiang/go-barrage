@@ -2,19 +2,19 @@ package handlers
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/gorilla/websocket"
 	"github.com/wuqinqiang/chitchat/models"
 	"net/http"
+	"sync"
 )
 
 type Msg struct {
-	Message     string    `json:"message"`
-	UserName    string    `json:"user_name"`
-	Type        int       `json:"type"`
-	CreatedAt   string    `json:"created_at"`
-	ContentType int       `json:"content_type"`
-	To          int       `json:"to"`
+	Message     string `json:"message"`
+	UserName    string `json:"user_name"`
+	Type        int    `json:"type"`
+	CreatedAt   string `json:"created_at"`
+	ContentType int    `json:"content_type"`
+	To          int    `json:"to"`
 }
 
 var client_users = make(map[*websocket.Conn]int) //客户端连接绑定user_id
@@ -23,13 +23,17 @@ var user_clients = make(map[int]*websocket.Conn) //user_id 绑定客户端
 
 var messageChannel = make(chan interface{}) //消息通道存储
 
+//读写锁
+var rwlocker sync.RWMutex
+
 var upgrader = websocket.Upgrader{
 	//HandshakeTimeout: 5,
 	ReadBufferSize:  1024,
 	WriteBufferSize: 1024,
 	//当前预先任何连接
 	CheckOrigin: func(r *http.Request) bool {
-		return true },
+		return true
+	},
 }
 
 //读取发送的消息
@@ -51,8 +55,6 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 		user, err := sess.User()
 		//记录发送消息
 		if msg.Type == 5 { //是弹幕发送
-			fmt.Println("收到消息了")
-
 			if _, err := user.CreateMessage(RemoteIP(r), msg.Message, msg.Type); err != nil {
 				danger(err.Error())
 				break
@@ -60,25 +62,25 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 			msg.UserName = user.Name
 			messageChannel <- msg
 		} else { //单聊或者群聊消息
-			 err := user.CreateChatMessage(msg.Message, msg.To, msg.Type, msg.ContentType)
+			err := user.CreateChatMessage(msg.Message, msg.To, msg.Type, msg.ContentType)
 			if err != nil {
 				danger(err.Error())
 				break
 			}
-			////找到次客户端发送消息
+			////找到客户端发送消息
+			rwlocker.RLock()
 			client := user_clients[msg.To]
-
+			rwlocker.RUnlock()
 			if client == nil {
 				//说明并没有登录，这条就算未读
-				err:=models.AddUnreadMessage(user.Id,msg.To)
-				if err !=nil{
+				err := models.AddUnreadMessage(user.Id, msg.To)
+				if err != nil {
 					danger(err.Error())
 					break
 				}
 			} else {
 				err = client.WriteJSON(msg)
 				if err != nil {
-					fmt.Println("出错了")
 					CloseClient(client)
 					break
 				}
@@ -87,7 +89,7 @@ func Reader(conn *websocket.Conn, sess models.Session, r *http.Request) {
 	}
 }
 
-//获取消息
+//发送弹幕消息
 func SendClientMessage() {
 	for {
 		msg := <-messageChannel
@@ -109,7 +111,7 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/login", 302)
 	}
 
-	//将此连接升级为ws
+	//将此连接升级为ws (其实并未鉴权)
 
 	ws, err := upgrader.Upgrade(w, r, nil)
 	if err != nil {
@@ -117,15 +119,18 @@ func WsContent(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	//双向绑定
+	rwlocker.Lock()
 	client_users[ws] = sess.UserId
 	user_clients[sess.UserId] = ws
+	rwlocker.Unlock()
 	go Reader(ws, sess, r)
 	go SendClientMessage()
 }
 
 func CloseClient(client *websocket.Conn) {
 	client.Close()
+	rwlocker.Lock()
 	delete(user_clients, client_users[client])
 	delete(client_users, client)
+	rwlocker.Unlock()
 }
-

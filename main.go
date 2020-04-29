@@ -7,8 +7,6 @@ import (
 	"net/http"
 )
 
-
-
 func startWebServer() {
 	r := NewRoute()
 	config := LoadConfig()
