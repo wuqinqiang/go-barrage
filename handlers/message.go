@@ -2,22 +2,19 @@ package handlers
 
 import (
 	"encoding/json"
-	"github.com/wuqinqiang/chitchat/models"
 	"html/template"
 	"io"
 	"net/http"
+
+	"github.com/wuqinqiang/chitchat/models"
 )
 
 func ChatRoom(w http.ResponseWriter, r *http.Request) {
 	_, err := session(w, r)
 	if err != nil {
 		http.Redirect(w, r, "/login", 302)
-	}
-	messages, err := models.Messages()
-	if err != nil {
-		danger(err.Error())
 	} else {
-		generateHTML(w, messages, "layout", "auth.navbar", "chat")
+		generateHTML(w, nil, "layout", "auth.navbar", "chat")
 	}
 }
 
