@@ -25,7 +25,10 @@
         border-radius: 50%;
         font-size: 12px;
     }
-
+    .emotion:hover{
+        cursor:pointer;
+        color: red;
+    }
 
 </style>
 <body>
@@ -223,12 +226,16 @@
                         </div>
                         <div style="display: none" id="bottom-show" class="container">
                             <div class="bottom">
+                                <span onclick="sendEmm()"  class="emotion">选择表情</span>
                                 <form>
+
                                     <textarea id="chat-text" class="form-control" placeholder="Type message..."
                                               rows="1"></textarea>
-                                    <button type="button" onclick="sendMessage()" class="btn prepend"><i
-                                                data-eva="paper-plane"></i>
+
+                                    <button type="button" onclick="sendMessage()" class="btn prepend">
+                                        <i data-eva="paper-plane"></i>
                                     </button>
+
                                 </form>
                             </div>
                         </div>
@@ -312,8 +319,14 @@
 <script src="/static/dist/js/vendor/eva.min.js"></script>
 <script src="/static/dist/js/vendor/bootstrap.min.js"></script>
 <script src="/static/dist/js/swipe.min.js"></script>
+<script src="/static/js/config.js"></script>
+<script src="/static/emm/js/jquery.min.js"></script>
+<script src="/static/emm/js/jquery.qqFace.js"></script>
+<script src="/static/js/helper.js"></script>
+<script src="/static/js/friend.js"></script>
+<script src="/static/js/user.js"></script>
+{{/*<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>*/}}
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </body>
 </html>
 
@@ -324,7 +337,7 @@
     var currentId
 
     var sendId = 0 //发送对象
-    wsServer = 'ws://localhost:8080/ws';
+    wsServer = wsUrl;
 
     websocket = new WebSocket(wsServer);
 
@@ -344,14 +357,13 @@
         // 处理接收的消息
         let param = JSON.parse(evt.data);
         if (typeof (param.Remark) == "undefined") { //普通聊天消息
-            createChatHtmlNode(param.message, param.created_at, 2)
-            $("#last-message"+param.from).html(param.message)
+            createChatHtmlNode(replace_em(param.message), param.created_at, 2)
+            $("#last-message" + param.from).html(replace_em(param.message))
             msgScrollTOp()
         } else {
             swal("您有新的好友请求");
             addHandleFriendHtml(param.FromId, param.Remark)
         }
-
 
     };
 
@@ -361,343 +373,9 @@
         })
     };
 
-
-    //聊天
-    function sendMessage(to_id, type = 1) {
-        //单聊
-        var content = $("#chat-text").val()
-
-        content = stripscript(content)
-
-        if (content == "" || content == null) {
-            swal("请输入发送内容", "", "error", {
-                button: "继续"
-            })
-            return
-        }
-        if (sendId == 0) {
-            swal("请选择发送对象", "", "error", {
-                button: "继续"
-            })
-            return
-        }
-
-        $("#last-message"+sendId).html(content)
-
-
-        var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': 1};
-        this.wsSend(info);
-
-
-        $("#chat-text").val("")
-
-        //添加聊天
-        createChatHtmlNode(info.message, '刚刚', 1)
-        //下拉框拉到最底部
-        msgScrollTOp()
-
-    }
-
-    //切换聊天对象的时候更新当前将要聊天对象的user_Id
-    function change_user(obj, un = 0) {
-        $(".chat").children('.index-chat').remove()
-        $("#bottom-show").show()
-        $("#scroll").show()
-        //点开表示读消息 对应未读数减去
-        sum = $("#un-message").text()
-        if (sum <= 0) {
-            $("#un-message").html(0)
-        } else {
-            current_count = sum - un
-            $("#un-message").html(current_count)
-        }
-
-        currentId = $("#current_id").val();
-        var from_id = $(obj).parents("li").find("#from_id").val();
-        var to_id = $(obj).parents("li").find("#to_id").val();
-        var to_name = $(obj).parents("li").find("#to_name").val();
-        //未读消息清空
-        $("#unread_count" + to_id).text("未读消息:0")
-        $("#current_name").text(to_name)
-        sendId = currentId == from_id ? to_id : from_id;
-
-        //查看消息记录
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:8080/chat/chatAll',//被请求的API接口地址
-            data: {to_id: sendId},
-            dataType: 'json',
-            success: function (data) {
-                $(".chat-child").remove()
-                if (data == null) {
-                    return
-                }
-                for (var i = 0; i < data.length; i++) {
-                    type = data[i].FromId == currentId ? 1 : 2
-                    createChatHtmlNode(data[i].Content, data[i].SendTime, type)
-                }
-                msgScrollTOp()
-            },
-        });
-    }
-
-
-    //获取好友列表
-    function getFriends() {
-        $.ajax({
-            type: "GET",
-            url: 'http://localhost:8080/friends',
-            dataType: 'json',
-            success: function (data) {
-                $("#friends-list").children().remove()
-                if (data == null) {
-                    return
-                }
-                for (i = 0; i < data.length; i++) {
-                    var friend_html = '<li>\n' +
-                        '                                        <input type="hidden" id="from_id" name="from_id" value="' + data[i].UserId + '"><br>\n' +
-                        '                                        <input type="hidden" id="to_id" name="to_id" value="' + data[i].FriendId + '"><br>\n' +
-                        '                                        <input type="hidden" id="to_name" name="to_name" value="' + data[i].FriendName + '"><br>\n' +
-                        '                                        <a href="#chat1" onclick="change_user(this,' + data[i].UnreadMessage + ')">\n' +
-                        '                                            <div class="status online"><img\n' +
-                        '                                                        src="/static/dist/img/avatars/avatar-female-3.jpg" alt="avatar"><i\n' +
-                        '                                                        data-eva="radio-button-on"></i></div>\n' +
-                        '                                            <div class="content">\n' +
-                        '                                                <h5>' + data[i].FriendName + '</h5>\n' +
-                        '                                                <span>中国</span>\n' +
-                        '                                            </div>\n' +
-                        '                                            <div class="icon"><i data-eva="person"></i></div>\n' +
-                        '                                        </a>\n' +
-                        '                                    </li>'
-
-                    $("#friends-list").append(friend_html)
-                }
-            },
-        });
-    }
-
-
-    //获取用户列表
-    function getUsers() {
-        $.ajax({
-            type: "GET",
-            url: 'http://localhost:8080/users',
-            dataType: 'json',
-            success: function (data) {
-                $("#userList").children().remove()
-                for (var i = 0; i < data.length; i++) {
-                    userNode = '                                <li>\n' +
-                        '                                    <div class="status online"><img src="/static/dist/img/avatars/avatar-male-6.jpg"\n' +
-                        '                                                                    alt="avatar"><i data-eva="radio-button-on"></i>\n' +
-                        '                                    </div>\n' +
-                        '                                    <div class="content">\n' +
-                        '                                        <h5>' + data[i].Name + '</h5>\n' +
-                        '                                        <span>' + data[i].Email + '</span>\n' +
-                        '                                    </div>\n' +
-                        '                                    <div class="custom-control">\n' +
-                        ' <button  onclick="ToFriendUserById(' + data[i].Id + ')" type="button" class="btn" data-toggle="modal"\n' +
-                        '                                                data-target="#compose"><i\n' +
-                        '                                                    data-eva="person-add" data-eva-animation="pulse">请求验证</i></button>'
-                    // '                                        <input type="button" onclick="ToFriendUserById(' + data[i].Id + ')" class="custom-control-input" id="user' + data[i].Id + '">\n' +
-                    // '                                        <label class="custom-control-label" for="user' + data[i].Id + '"></label>\n' +
-                    '                                    </div>\n' +
-                    '                                </li>'
-
-                    $("#userList").append(userNode)
-                    $("#userList2").append(userNode)
-
-                }
-
-            },
-        });
-    }
-
-
-    //获取好友申请
-    function GetApplications() {
-        $.ajax({
-            type: "GET",
-            url: 'http://localhost:8080/user/apps',//被请求的API接口地址
-            dataType: 'json',
-            success: function (data) {
-                $("#app-counts").children(".sum_notes").html('')
-                $("#system_notices").children().remove()
-                if (data == null) {
-                    $("#app-counts").children(".sum_notes").append(0)
-                    return
-                }
-
-                $("#app-counts").children(".sum_notes").append(data.length)
-                for (i = 0; i < data.length; i++) {
-                    addHandleFriendHtml(data[i].FromId, data[i].Remark)
-                }
-            },
-        });
-    }
-
-    //通过姓名查找用户
-    function findUserByName() {
-        //用户名
-        var name = $(" input[ name='username' ] ").val()
-        if (name == "" || name == null) {
-            swal("请输入要查询的用户名", "", "error", {
-                button: "继续"
-            })
-        }
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:8080/user',
-            data: {name: name},
-            dataType: 'json',
-            success: function (data) {
-                if (data.Id == 0) {
-                    swal("不存在此用户", "请重新输入", "info", {
-                        button: "继续"
-                    })
-                    return;
-                }
-                $("#userList").children().remove()
-                userNode = '                                <li>\n' +
-                    '                                    <div class="status online"><img src="/static/dist/img/avatars/avatar-female-3.jpg"\n' +
-                    '                                                                    alt="avatar"><i data-eva="radio-button-on"></i>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="content">\n' +
-                    '                                        <h5>' + data.Name + '</h5>\n' +
-                    '                                        <span>' + data.Email + '</span>\n' +
-                    '                                    </div>\n' +
-                    '                                    <div class="custom-control">\n' +
-                    '                                        <input type="checkbox" onclick="ToFriendUserById(' + data.Id + ')" class="custom-control-input" id="user' + data.Id + '">\n' +
-                    '                                        <label class="custom-control-label" for="user' + data.Id + '"></label>\n' +
-                    '                                    </div>\n' +
-                    '                                </li>'
-                $("#userList").append(userNode)
-            },
-        });
-
-    }
-
-
-    //加好友申请
-    function ToFriendUserById(id) {
-        $.ajax({
-            type: "POST",
-            url: 'http://localhost:8080/friend/crete',
-            data: {user_id: id},
-            dataType: 'json',
-            success: function (data) {
-                if (data == 2) {
-                    swal("已经是好友关系请勿发送", "", "error", {
-                        button: "继续"
-                    })
-                } else {
-                    swal("已发送好友请求", "", "success", {
-                        button: "继续"
-                    })
-                }
-            },
-        });
-    }
-
-
-    //动态增加好友请求模板
-    function addHandleFriendHtml(user_id, content) {
-        var addHandle = '<li">\n' +
-            '                                <p >' + content + ' <button style="color: red"  onclick=handleFriendApp(' + user_id + ',"' + content + '")>处理</button></p>\n' +
-            '                            </li>'
-
-        //处理通过的模板
-        var HandleSuccess = '                            <li>\n' +
-            '                                <div class="round"><i data-eva="person-done"></i></div>\n' +
-            '                                <p>Quincy has joined to <strong>Squad Ghouls</strong> group.</p>\n' +
-            '                            </li>'
-
-        $("#system_notices").append(addHandle)
-
-    }
-
-    function handleFriendApp(user_id, content) {
-        swal({
-            title: content,
-            text: "是同意呢还是同意呢",
-            icon: "info",
-            buttons: {
-                button1: {
-                    text: "拒绝",
-                    value: false,
-                },
-                button2: {
-                    text: "同意",
-                    value: true,
-                }
-            },
-        }).then(function (value) {   //这里的value就是按钮的value值，只要对应就可以啦
-            status = value == true ? 1 : 2
-            $.ajax({
-                type: "POST",
-                url: 'http://localhost:8080/user/handleApp',
-                data: {from_id: user_id, status: status},
-                dataType: 'json',
-                success: function (data) {
-                    GetApplications()
-                    swal("处理成功", "", "success", {
-                        button: "继续"
-                    })
-                },
-            });
-        });
-
-    }
-
-
     //发送消息
     function wsSend(info) {
         websocket.send(JSON.stringify(info));
-    }
-
-    //消息聊天到底最底部
-    function msgScrollTOp() {
-        var div = document.getElementById('scroll');
-        div.scrollTop = div.scrollHeight
-    }
-
-
-    //聊天记录动态添加到html
-    //type=1给自己加 2给别人加 3 都加
-    function createChatHtmlNode(content, time, type) {
-
-        var own = '<li class="chat-child">\n' +
-            '\n' +
-            '                      </li>';
-
-        var other = '<li class="chat-child">\n' +
-            '                                        <img src="/static/dist/img/avatars/avatar-male-3.jpg" alt="avatar">\n' +
-            '                                        <div class="content">\n' +
-            '                                            <div class="message">\n' +
-            '                                                <div class="bubble">\n' +
-            '                                                    <p>' + content + '\n' +
-            '                                                        </p>\n' +
-            '                                                </div>\n' +
-            '                                            </div>\n' +
-            '                                            <span>' + time + '</span>\n' +
-            '                                        </div>\n' +
-            '                                    </li>'
-
-        if (type == 1) {
-            $("#container2").children("ul").append(own)
-            $("#container2").children("ul").append(other)
-        } else {
-            $("#container2").children("ul").append(other)
-            $("#container2").children("ul").append(own)
-        }
-    }
-
-    function stripscript(s) {
-        var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")        //格式 RegExp("[在中间定义特殊过滤字符]")
-        var rs = "";
-        for (var i = 0; i < s.length; i++) {
-            rs = rs + s.substr(i, 1).replace(pattern, '');
-        }
-        return rs;
     }
 
 

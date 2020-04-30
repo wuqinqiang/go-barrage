@@ -21,6 +21,7 @@
     </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/static/js/config.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         var wsServer
@@ -31,7 +32,7 @@
 
         $.ajax({
             type: "GET",
-            url: 'http://localhost:8080/chat/messages',//被请求的API接口地址
+            url: httpUrl+'/chat/messages',//被请求的API接口地址
             dataType: 'json',
             success: function (data) {
 
@@ -54,7 +55,7 @@
                 swal("已连接成功，请勿重复连接!", "继续", "error");
                 return
             }
-            wsServer = 'ws://localhost:8080/ws';
+            wsServer = wsUrl;
 
             websocket = new WebSocket(wsServer);
 
@@ -72,6 +73,9 @@
             };
 
             websocket.onmessage = function (evt) {
+                if (evt.data=="ping"){
+                    return
+                }
                 // 处理接收的消息
                 let param = JSON.parse(evt.data);
                 createBarrage(param.user_name+"说:"+param.message, true);
