@@ -135,4 +135,11 @@ var webRouters = WebRouters{
 		"/user/handleApp",
 		handlers.HandleApplication,
 	},
+	//上传文件
+	{
+		"upload",
+		"POST",
+		"/upload",
+		handlers.UploadFile,
+	},
 }

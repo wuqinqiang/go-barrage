@@ -2,7 +2,7 @@
 function getUsers() {
     $.ajax({
         type: "GET",
-        url: httpUrl+'/users',
+        url: httpUrl + '/users',
         dataType: 'json',
         success: function (data) {
             $("#userList").children().remove()
@@ -45,7 +45,7 @@ function findUserByName() {
     }
     $.ajax({
         type: "POST",
-        url: httpUrl+'/user',
+        url: httpUrl + '/user',
         data: {name: name},
         dataType: 'json',
         success: function (data) {
@@ -113,7 +113,7 @@ function handleFriendApp(user_id, content) {
         status = value == true ? 1 : 2
         $.ajax({
             type: "POST",
-            url: httpUrl+'/user/handleApp',
+            url: httpUrl + '/user/handleApp',
             data: {from_id: user_id, status: status},
             dataType: 'json',
             success: function (data) {
@@ -195,6 +195,7 @@ function sendMessage(to_id, type = 1) {
 
 }
 
+//发送表情
 function sendEmm() {
     $('.emotion').qqFace({
         id: 'facebox',
@@ -205,3 +206,6 @@ function sendEmm() {
     em = replace_em(str);
     $("#chat-text").html(em)
 }
+
+//上传图片
+

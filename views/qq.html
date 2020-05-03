@@ -25,8 +25,9 @@
         border-radius: 50%;
         font-size: 12px;
     }
-    .emotion:hover{
-        cursor:pointer;
+
+    .emotion:hover {
+        cursor: pointer;
         color: red;
     }
 
@@ -226,7 +227,10 @@
                         </div>
                         <div style="display: none" id="bottom-show" class="container">
                             <div class="bottom">
-                                <span onclick="sendEmm()"  class="emotion">选择表情</span>
+                                <span onclick="sendEmm()" class="emotion">选择表情</span>
+
+                                <input type='file' name='xxx' id='myFile'>
+                                <input type='button' onclick='uploadFile()' value='点击上传'>
                                 <form>
 
                                     <textarea id="chat-text" class="form-control" placeholder="Type message..."
@@ -376,6 +380,27 @@
     //发送消息
     function wsSend(info) {
         websocket.send(JSON.stringify(info));
+    }
+
+
+    //上传文件
+    function uploadFile() {
+        var formData = new FormData($("#uploadForm")[0])  //创建一个forData
+        formData.append('img', $('#myFile')[0].files[0]) //把file添加进去  name命名为img
+        $.ajax({
+            type: "POST",
+            url: httpUrl + '/upload',
+            data: formData,
+            contentType: false,
+            processData: false,
+            dataType: 'json',
+            success: function (data) {
+                createChatHtmlNode(data,"刚刚",1)
+                msgScrollTOp()
+            },
+        });
+
+
     }
 
 

@@ -339,3 +339,57 @@ ERROR 2020/04/30 17:08:11 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:5651
 ERROR 2020/04/30 17:09:07 helper.go:76: websocket: close sent
 ERROR 2020/04/30 17:09:47 helper.go:76: websocket: close sent
 ERROR 2020/04/30 17:10:23 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:56641: use of closed network connection
+ERROR 2020/05/03 20:16:56 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:17:36 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:19:41 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:19:48 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:19:59 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:20:08 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:26:20 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:26:42 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:28:02 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:29:25 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:31:16 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:33:09 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:33:37 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:40:26 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:41:02 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:53:34 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:55:18 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:55:54 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:59:07 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:59:46 helper.go:76: websocket: close sent
+ERROR 2020/05/03 20:59:54 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:00:07 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:00:21 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:01:31 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:02:53 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:03:32 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:04:10 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:04:34 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:07:04 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:07:48 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:09:03 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:09:33 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:11:17 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:11:58 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:46:45 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:47:16 helper.go:76: websocket: close sent
+ERROR 2020/05/03 21:47:41 helper.go:76: http: no such file
+ERROR 2020/05/03 21:48:50 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:00:55 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:01:02 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:01:09 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:01:15 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:13:06 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:13:23 helper.go:76: open .public/resource/1588515203.png: no such file or directory
+ERROR 2020/05/03 22:13:48 helper.go:76: open .public/resource/1588515228.png: no such file or directory
+ERROR 2020/05/03 22:13:56 helper.go:76: open .public/resource/1588515236.png: no such file or directory
+ERROR 2020/05/03 22:13:56 helper.go:76: open .public/resource/1588515236.png: no such file or directory
+ERROR 2020/05/03 22:13:57 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:21:39 helper.go:76: http: no such file
+ERROR 2020/05/03 22:21:41 helper.go:76: http: no such file
+ERROR 2020/05/03 22:21:41 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:21:52 helper.go:76: http: no such file
+ERROR 2020/05/03 22:22:37 helper.go:76: websocket: close sent
+ERROR 2020/05/03 22:22:42 helper.go:76: websocket: close sent
