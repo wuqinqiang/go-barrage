@@ -1,9 +1,8 @@
-
 //加好友申请
 function ToFriendUserById(id) {
     $.ajax({
         type: "POST",
-        url: httpUrl+'/friend/crete',
+        url: httpUrl + '/friend/crete',
         data: {user_id: id},
         dataType: 'json',
         success: function (data) {
@@ -46,7 +45,7 @@ function change_user(obj, un = 0) {
     //查看消息记录
     $.ajax({
         type: "POST",
-        url: httpUrl+'/chat/chatAll',//被请求的API接口地址
+        url: httpUrl + '/chat/chatAll',//被请求的API接口地址
         data: {to_id: sendId},
         dataType: 'json',
         success: function (data) {
@@ -54,9 +53,15 @@ function change_user(obj, un = 0) {
             if (data == null) {
                 return
             }
+
             for (var i = 0; i < data.length; i++) {
+
                 type = data[i].FromId == currentId ? 1 : 2
-                createChatHtmlNode(replace_em(data[i].Content), data[i].SendTime, type)
+                content = replace_em(data[i].Content);
+                if (data[i].ContentType == 2) {
+                    content = '<img src="http://localhost:8080/static/' + data[i].Content + '" width="100px"  height="100px" />'
+                }
+                createChatHtmlNode(content, data[i].SendTime, type)
             }
             msgScrollTOp()
         },
@@ -67,7 +72,7 @@ function change_user(obj, un = 0) {
 function getFriends() {
     $.ajax({
         type: "GET",
-        url: httpUrl+'/friends',
+        url: httpUrl + '/friends',
         dataType: 'json',
         success: function (data) {
             $("#friends-list").children().remove()
@@ -102,7 +107,7 @@ function getFriends() {
 function GetApplications() {
     $.ajax({
         type: "GET",
-        url: httpUrl+'/user/apps',//被请求的API接口地址
+        url: httpUrl + '/user/apps',//被请求的API接口地址
         dataType: 'json',
         success: function (data) {
             $("#app-counts").children(".sum_notes").html('')

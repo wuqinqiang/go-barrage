@@ -230,7 +230,7 @@
                                 <span onclick="sendEmm()" class="emotion">选择表情</span>
 
                                 <input type='file' name='xxx' id='myFile'>
-                                <input type='button' onclick='uploadFile()' value='点击上传'>
+                                <input type='button' onclick='sendFile()' value='点击发送'>
                                 <form>
 
                                     <textarea id="chat-text" class="form-control" placeholder="Type message..."
@@ -340,6 +340,8 @@
     var websocket
     var currentId
 
+    var currentfile
+
     var sendId = 0 //发送对象
     wsServer = wsUrl;
 
@@ -382,9 +384,7 @@
         websocket.send(JSON.stringify(info));
     }
 
-
-    //上传文件
-    function uploadFile() {
+    $("#myFile").on("change", function () {
         var formData = new FormData($("#uploadForm")[0])  //创建一个forData
         formData.append('img', $('#myFile')[0].files[0]) //把file添加进去  name命名为img
         $.ajax({
@@ -395,13 +395,30 @@
             processData: false,
             dataType: 'json',
             success: function (data) {
-                createChatHtmlNode(data,"刚刚",1)
-                msgScrollTOp()
+                currentfile=data
             },
         });
+    })
 
+    //发送文件
+    function sendFile() {
+        if(currentfile==undefined){
+            swal("请选择发送文件", "", "error", {
+                button: "继续"
+            })
+            return
+        }
+        packMessage(currentfile, 1, 2)
 
+        html='<img src="http://localhost:8080/static/'+currentfile+'" width="100px"  height="100px" />'
+        //添加聊天
+        createChatHtmlNode(html, '刚刚', 1)
+        //下拉框拉到最底部
+        msgScrollTOp()
     }
+
+
+
 
 
 </script>

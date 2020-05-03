@@ -160,32 +160,21 @@ function createChatHtmlNode(content, time, type) {
 
 
 //聊天
-function sendMessage(to_id, type = 1) {
+function sendMessage(type = 1) {
     //单聊
     var content = $("#chat-text").val()
-    //xss
-    content = stripscript(content)
-    //用来发送之后直接展示的
-    content_emm = replace_em(content)
+
     if (content == "" || content == null) {
         swal("请输入发送内容", "", "error", {
             button: "继续"
         })
         return
     }
-    if (sendId == 0) {
-        swal("请选择发送对象", "", "error", {
-            button: "继续"
-        })
-        return
-    }
-
-    $("#last-message" + sendId).html(content_emm)
-
-    var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': 1};
-    this.wsSend(info);
-
-
+    //xss
+    content = stripscript(content)
+    //用来发送之后直接展示的
+    content_emm = replace_em(content)
+    packMessage(content, type, 1)
     $("#chat-text").val("")
 
     //添加聊天
@@ -194,6 +183,21 @@ function sendMessage(to_id, type = 1) {
     msgScrollTOp()
 
 }
+
+
+
+
+function packMessage(content, type, content_type) {
+    if (sendId == 0) {
+        swal("请选择发送对象", "", "error", {
+            button: "继续"
+        })
+        return
+    }
+    var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': content_type};
+    this.wsSend(info);
+}
+
 
 //发送表情
 function sendEmm() {

@@ -14,6 +14,8 @@ func init() {
 	os.MkdirAll("./public/resource", os.ModePerm)
 }
 
+
+//上传文件
 func UploadFile(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	data, head, err := r.FormFile("img")
