@@ -17,7 +17,7 @@ function replace_em(str) {
 
     str = str.replace(/\n/g, '<br/>');
 
-    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="http://localhost:8080/static/emm/arclist/$1.gif" border="0" />');
+    str = str.replace(/\[em_([0-9]*)\]/g, '<img src="'+resourceUrl+'+emm/arclist/$1.gif" border="0" />');
     return str;
 
 }

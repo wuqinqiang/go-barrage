@@ -59,7 +59,7 @@ function change_user(obj, un = 0) {
                 type = data[i].FromId == currentId ? 1 : 2
                 content = replace_em(data[i].Content);
                 if (data[i].ContentType == 2) {
-                    content = '<img src="http://localhost:8080/static/' + data[i].Content + '" width="100px"  height="100px" />'
+                    content = '<img src="'+resourceUrl + data[i].Content + '" width="100px"  height="100px" />'
                 }
                 createChatHtmlNode(content, data[i].SendTime, type)
             }
