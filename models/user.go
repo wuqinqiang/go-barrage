@@ -196,7 +196,7 @@ func (user *User) GetReCordFriends() (records []LastRecord) {
 //另一种就是从数据库层面解决 就是现在这个
 func (user *User) GetUserFriends() (friends []Friend) {
 	rows, err := Db.Query(
-		"select u.*, coalesce(l.id,0) as id,coalesce(l.from_id,0) as from_id,coalesce(l.to_id,0) as to_id,coalesce(l.content,' ') as ' 22'  from user_friends u left join last_records l "+
+		"select u.*, coalesce(l.id,0) as id,coalesce(l.from_id,0) as from_id,coalesce(l.to_id,0) as to_id,coalesce(l.content,' ') as content,coalesce(l.content_type,1) as content_type  from user_friends u left join last_records l "+
 			"on (u.user_id=l.from_id and u.friend_id=l.to_id or  u.user_id=l.to_id and u.friend_id=l.from_id) where u.user_id=? order by l.id desc", user.Id)
 	if err != nil {
 		fmt.Println(err.Error())
@@ -208,6 +208,7 @@ func (user *User) GetUserFriends() (friends []Friend) {
 			&friend.FriendName, &friend.UnreadMessage,
 			&friend.LastMessage.Id, &friend.LastMessage.FromId,
 			&friend.LastMessage.ToId, &friend.LastMessage.Content,
+			&friend.LastMessage.ContentType,
 
 		); err != nil {
 			fmt.Println(err.Error())

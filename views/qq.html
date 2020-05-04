@@ -104,7 +104,13 @@
                                                     <h5>{{.FriendName}}</h5>
                                                     <span id="unread_count{{.FriendId}}">未读消息:{{.UnreadMessage}}</span>
                                                 </div>
-                                                <p id="last-message{{.FriendId}}">{{.LastMessage.Content}}</p>
+                                                <p id="last-message{{.FriendId}}">
+                                                    {{if eq .LastMessage.ContentType 1}}
+                                                        {{.LastMessage.Content}}
+                                                    {{else}}
+                                                        <img src="http://localhost:8080/static/{{.LastMessage.Content}}"/>
+                                                    {{end}}
+                                                </p>
                                             </div>
                                         </a>
                                     </li>
@@ -229,16 +235,16 @@
                             <div class="bottom">
                                 <span onclick="sendEmm()" class="emotion">选择表情</span>
 
-                                <input type='file' name='xxx' id='myFile'>
-                                <input type='button' onclick='sendFile()' value='点击发送'>
-                                <form>
+                                <input type='file' style="position: relative;left: 730px" name='xxx' id='myFile' accept="image/*">
+                                <input type='button' style="position: relative;left: 590px"  onclick='sendFile()' value='图片发送'>
 
-                                    <textarea id="chat-text" class="form-control" placeholder="Type message..."
-                                              rows="1"></textarea>
+                            <form>
+                                <textarea id="chat-text" class="form-control" placeholder="Type message..."
+                                          rows="1"></textarea>
 
-                                    <button type="button" onclick="sendMessage()" class="btn prepend">
-                                        <i data-eva="paper-plane"></i>
-                                    </button>
+                                <button type="button" onclick="sendMessage()" class="btn prepend">
+                                    <i data-eva="paper-plane"></i>
+                                </button>
 
                                 </form>
                             </div>
@@ -363,8 +369,15 @@
         // 处理接收的消息
         let param = JSON.parse(evt.data);
         if (typeof (param.Remark) == "undefined") { //普通聊天消息
-            createChatHtmlNode(replace_em(param.message), param.created_at, 2)
-            $("#last-message" + param.from).html(replace_em(param.message))
+            if (param.content_type == 1) {
+                createChatHtmlNode(replace_em(param.message), param.created_at, 2)
+                $("#last-message" + param.from).html(replace_em(param.message))
+            } else if (param.content_type == 2) {
+                html = '<img src="' + resourceUrl + param.message + '"/>'
+                createChatHtmlNode(html, param.created_at, 2)
+                $("#last-message" + param.from).html(html)
+            }
+
             msgScrollTOp()
         } else {
             swal("您有新的好友请求");
@@ -384,41 +397,35 @@
         websocket.send(JSON.stringify(info));
     }
 
-    $("#myFile").on("change", function () {
-        var formData = new FormData($("#uploadForm")[0])  //创建一个forData
-        formData.append('img', $('#myFile')[0].files[0]) //把file添加进去  name命名为img
-        $.ajax({
-            type: "POST",
-            url: httpUrl + '/upload',
-            data: formData,
-            contentType: false,
-            processData: false,
-            dataType: 'json',
-            success: function (data) {
-                currentfile=data
-            },
-        });
-    })
-
     //发送文件
     function sendFile() {
-        if(currentfile==undefined){
+        if (currentfile == undefined || currentfile == '') {
             swal("请选择发送文件", "", "error", {
                 button: "继续"
             })
             return
         }
+
+        if (sendId == 0) {
+            swal("请选择发送对象", "", "error", {
+                button: "继续"
+            })
+            return
+        }
+        //发送
         packMessage(currentfile, 1, 2)
 
-        html='<img src="http://localhost:8080/static/'+currentfile+'" width="100px"  height="100px" />'
+        html = '<img src="' + resourceUrl + currentfile + '" width="100px"  height="100px" />'
         //添加聊天
         createChatHtmlNode(html, '刚刚', 1)
+        $("#last-message" + sendId).html(html)
+
         //下拉框拉到最底部
         msgScrollTOp()
+        $('#myFile').val('')
+        currentfile = ''
+
     }
-
-
-
 
 
 </script>
