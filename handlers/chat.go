@@ -16,6 +16,8 @@ type ChatInfo struct {
 	UnReadCount int  //未读消息
 	UnHandleCount    int  //未处理请求
 }
+func unescaped (str string) template.HTML { return template.HTML(str) }
+
 
 func ChatIndex(w http.ResponseWriter, r *http.Request) {
 	sess, err := session(w, r)

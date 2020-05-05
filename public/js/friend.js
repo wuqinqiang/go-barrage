@@ -41,7 +41,6 @@ function change_user(obj, un = 0) {
     $("#unread_count" + to_id).text("未读消息:0")
     $("#current_name").text(to_name)
     sendId = currentId == from_id ? to_id : from_id;
-
     //查看消息记录
     $.ajax({
         type: "POST",
@@ -59,7 +58,7 @@ function change_user(obj, un = 0) {
                 type = data[i].FromId == currentId ? 1 : 2
                 content = replace_em(data[i].Content);
                 if (data[i].ContentType == 2) {
-                    content = '<img src="'+resourceUrl + data[i].Content + '" width="100px"  height="100px" />'
+                    content = '<img src="'+ data[i].Content + '" width="100px"  height="100px" />'
                 }
                 createChatHtmlNode(content, data[i].SendTime, type)
             }
@@ -124,3 +123,5 @@ function GetApplications() {
         },
     });
 }
+
+

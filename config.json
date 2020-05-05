@@ -10,5 +10,12 @@
     "Database": "chitchat",
     "User": "homestead",
     "Password": "secret"
+  },
+  "OSS": {
+    "AccessKeyID": "LTAI4Fu9UYsNzjzeHCtmHpmX",
+    "AccessKeySecret": "VW3ZalHvH2u4TXahhOQmFRCv6qaC9j",
+    "Bucket": "wuqinqiang",
+    "BucketUrl": "http://oss-cn-hangzhou.aliyuncs.com"
   }
+
 }

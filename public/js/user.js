@@ -193,9 +193,6 @@ function sendMessage(type = 1) {
 
 }
 
-
-
-
 function packMessage(content, type, content_type) {
     var info = {'message': content, 'type': type, 'to': parseInt(sendId), 'content_type': content_type};
     this.wsSend(info);
@@ -215,56 +212,12 @@ function sendEmm() {
 }
 
 $("#myFile").click(function () {
-    // $('.line').css('opacity', 1);
-    // var img = document.getElementById("loc_img");
-    // img.src = ''
     $('#myFile').value=''
 })
 
-//上传图片
-$("#myFile").on("change", function () {
-    var formData = new FormData($("#uploadForm")[0])  //创建一个forData
-    formData.append('img', $('#myFile')[0].files[0]) //把file添加进去  name命名为img
-    $.ajax({
-        type: "POST",
-        url: httpUrl + '/upload',
-        data: formData,
-        contentType: false,
-        processData: false,
-        cache:false,
-        dataType: 'json',
-        success: function (data) {
-            currentfile = data
-        },
-
-        xhr:function(){ //获取上传进度
-            var myXhr = $.ajaxSettings.xhr();
-            if(myXhr.upload){ // check if upload property exists
-                myXhr.upload.addEventListener('progress',function(e){
-                    var loaded = e.loaded;//已经上传大小情况
-                    var tot = e.total;//附件总大小
-                    var per = Math.floor(100*loaded/tot);  //已经上传的百分比
-                    console.log(per)
-                }, false);
-            }
-            return myXhr;
-        }
-    });
 
 
-    // //展示不展示
-    // var reader = new FileReader();
-    // reader.readAsDataURL($('#myFile')[0].files[0]);
-    // //监听文件读取结束后事件
-    // reader.onloadend = function(e) {
-    //     showXY(e.target.result);
-    // };
-
-
-})
-
-
-//展示上传文件
+//展示上传文件 暂时无用
 function showXY(source) {
     var img = document.getElementById("loc_img");
     img.src = source;

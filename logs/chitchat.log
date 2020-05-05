@@ -1,527 +1,126 @@
-WARNNIN 2020/04/25 21:51:48 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/25 21:52:02 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/25 22:08:00 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/25 22:17:02 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/25 22:46:03 helper.go:80: <nil> Failed to get cookie
-ERROR 2020/04/25 22:56:41 helper.go:75: Error 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from user_id=? and friend_id=?' at line 1
-WARNNIN 2020/04/27 10:12:45 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 10:16:33 helper.go:80: <nil> Failed to get cookie
-ERROR 2020/04/27 11:20:40 helper.go:75: Error 1366: Incorrect integer value: '你好' for column 'from_id' at row 1
-WARNNIN 2020/04/27 13:51:38 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 15:31:49 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:16:49 helper.go:80: <nil> Failed to get cookie
-ERROR 2020/04/27 20:16:55 helper.go:75: sql: no rows in result set cannot find user
-WARNNIN 2020/04/27 20:29:20 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:32:23 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:27 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:27 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:27 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:28 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:28 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:28 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:33 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:33 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:38:33 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:40:03 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:40:19 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:40:55 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:45:07 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:46:08 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:47:11 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:47:54 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 20:48:25 helper.go:80: <nil> Failed to get cookie
-ERROR 2020/04/27 20:53:40 helper.go:75: sql: no rows in result set
-ERROR 2020/04/27 20:53:53 helper.go:75: sql: no rows in result set
-WARNNIN 2020/04/27 22:33:51 helper.go:80: <nil> Failed to get cookie
-WARNNIN 2020/04/27 22:35:32 helper.go:80: <nil> Failed to get cookie
-ERROR 2020/04/28 10:17:48 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
-ERROR 2020/04/28 10:17:52 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
-ERROR 2020/04/28 10:17:57 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
-ERROR 2020/04/28 10:18:17 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
-ERROR 2020/04/28 10:18:47 helper.go:75: dial tcp 192.168.10.10:3306: connect: operation timed out
-WARNNIN 2020/04/28 10:19:38 helper.go:80: <nil> Failed to get cookie
-ERROR 2020/04/28 10:19:45 helper.go:75: sql: no rows in result set cannot find user
-ERROR 2020/04/28 10:20:03 helper.go:75: sql: no rows in result set cannot find user
-ERROR 2020/04/28 10:20:10 helper.go:75: sql: no rows in result set cannot find user
-WARNNIN 2020/04/28 22:49:49 helper.go:81: websocket: request origin not allowed by Upgrader.CheckOrigin
-WARNNIN 2020/04/28 22:51:27 helper.go:81: websocket: request origin not allowed by Upgrader.CheckOrigin
-ERROR 2020/04/29 09:16:26 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
-ERROR 2020/04/29 09:16:30 helper.go:76: dial tcp 192.168.10.10:3306: connect: operation timed out
-ERROR 2020/04/29 15:03:33 helper.go:76: websocket: close sent
-ERROR 2020/04/29 15:45:10 helper.go:76: websocket: close sent
-ERROR 2020/04/29 15:45:12 helper.go:76: websocket: close sent
-ERROR 2020/04/29 15:46:01 helper.go:76: websocket: close sent
-ERROR 2020/04/29 15:56:22 helper.go:76: websocket: close sent
-WARNNIN 2020/04/29 17:05:19 helper.go:81: <nil> Failed to get cookie
-WARNNIN 2020/04/29 17:05:48 helper.go:81: <nil> Failed to get cookie
-ERROR 2020/04/29 17:05:51 helper.go:76: websocket: close sent
-WARNNIN 2020/04/29 17:05:59 helper.go:81: <nil> Failed to get cookie
-ERROR 2020/04/29 17:06:03 helper.go:76: websocket: close sent
-WARNNIN 2020/04/29 17:07:36 helper.go:81: <nil> Failed to get cookie
-ERROR 2020/04/29 17:07:44 helper.go:76: websocket: close sent
-ERROR 2020/04/29 17:07:46 helper.go:76: write tcp [::1]:8080->[::1]:55962: use of closed network connection
-ERROR 2020/04/29 17:37:11 helper.go:76: websocket: close sent
-WARNNIN 2020/04/29 18:02:10 helper.go:81: <nil> Failed to get cookie
-ERROR 2020/04/29 18:02:21 helper.go:76: sql: no rows in result set cannot find user
-ERROR 2020/04/29 18:02:26 helper.go:76: write tcp [::1]:8080->[::1]:49583: use of closed network connection
-ERROR 2020/04/29 18:04:27 helper.go:76: websocket: close sent
-ERROR 2020/04/29 18:05:15 helper.go:76: websocket: close sent
-ERROR 2020/04/29 18:09:22 helper.go:76: websocket: close sent
-ERROR 2020/04/29 18:10:53 helper.go:76: websocket: close sent
-ERROR 2020/04/29 18:12:27 helper.go:76: websocket: close sent
-ERROR 2020/04/29 18:12:46 helper.go:76: websocket: close sent
-ERROR 2020/04/29 18:21:17 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52356: use of closed network connection
-ERROR 2020/04/29 18:21:20 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52455: use of closed network connection
-ERROR 2020/04/29 18:21:38 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52524: use of closed network connection
-ERROR 2020/04/29 18:21:44 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52553: use of closed network connection
-ERROR 2020/04/29 18:21:46 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:52558: use of closed network connection
-ERROR 2020/04/29 18:24:07 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:53146: use of closed network connection
-ERROR 2020/04/30 09:34:40 helper.go:76: sql: no rows in result set cannot find user
-ERROR 2020/04/30 09:50:21 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:29 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:34 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:47 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:50:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:53:25 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:53:32 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:53:36 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:55:08 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:56:31 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:56:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:57:09 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:57:20 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:57:30 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:57:39 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:58:45 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:59:06 helper.go:76: websocket: close sent
-ERROR 2020/04/30 09:59:29 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:00:04 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:00:23 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:01:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:02:18 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:02:20 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:02:34 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:02:48 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:03:15 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:03:35 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:06:25 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:10:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:10:36 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:17:16 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:17:32 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:28:03 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:43:04 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:43:34 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:43:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:44:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:48:08 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:48:29 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:48:35 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:49:03 helper.go:76: websocket: close sent
-ERROR 2020/04/30 10:49:38 helper.go:76: websocket: close sent
-ERROR 2020/04/30 11:00:04 helper.go:76: websocket: close sent
-ERROR 2020/04/30 11:01:01 helper.go:76: websocket: close sent
-ERROR 2020/04/30 11:40:35 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:20:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:21:04 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:21:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:21:36 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:21:56 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:24:35 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:27:27 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:27:49 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:30:58 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:31:28 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:32:02 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:32:08 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:32:27 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:32:30 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:32:32 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:32:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:33:01 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:42:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:44:17 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:45:39 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:49:13 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:49:14 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:49:31 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:49:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:50:01 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:50:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:51:03 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:51:17 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:51:21 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:51:23 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:51:29 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:51:37 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:52:26 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:52:29 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:52:47 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:53:06 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:54:53 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:55:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:56:45 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:56:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:57:17 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:57:25 helper.go:76: websocket: close sent
-ERROR 2020/04/30 13:59:30 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 13:59:37 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:03:34 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:03:49 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:03:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:03:54 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:05:48 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:05:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:06:23 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:06:28 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:07:13 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:07:23 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:08:06 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:08:13 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:08:17 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:08:26 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:08:48 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:08:57 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:09:35 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:09:48 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:15:42 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:15:55 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:16:10 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:16:22 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:16:36 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:16:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:16:51 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:16:56 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:17:27 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:17:31 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:17:48 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:18:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:18:14 helper.go:76: sql: no rows in result set
-ERROR 2020/04/30 14:18:28 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:20:34 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:20:50 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:23:22 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:24:02 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:27:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:28:39 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:29:59 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:30:19 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:32:55 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:36:46 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:37:56 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:39:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:39:56 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:40:15 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:41:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:41:55 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:42:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:43:22 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:43:26 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:44:57 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:48:22 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:49:18 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:50:01 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:50:52 helper.go:76: websocket: close sent
-ERROR 2020/04/30 14:54:00 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:27:28 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:28:41 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:28:59 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:31:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:32:14 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:38:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:40:28 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:40:37 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:41:03 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:41:08 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:41:56 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:42:05 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:42:17 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:42:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:42:41 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:43:10 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:43:30 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:47:02 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:48:23 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:50:52 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:52:31 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:53:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:54:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:54:52 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:54:55 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:55:02 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:55:58 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:56:16 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:57:42 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:57:46 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:58:42 helper.go:76: websocket: close sent
-ERROR 2020/04/30 15:59:46 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:00:03 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:00:09 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:00:14 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:00:40 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:00:47 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:00:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:01:05 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:01:22 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:01:30 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:07:16 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:07:30 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:09:26 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:09:39 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:14:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:17:27 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:17:58 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:22:03 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:24:38 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:25:10 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:25:12 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:26:21 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:26:48 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:27:12 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:28:14 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:28:38 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:31:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:31:53 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:10 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:14 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:15 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:16 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:30 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:38 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:55 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:32:57 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:33:45 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:33:46 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:34:05 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:34:12 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:34:40 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:35:05 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:38:05 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:38:40 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:39:08 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:39:09 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:39:43 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:45:27 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:50:57 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:51:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:51:32 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:51:56 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:52:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:54:59 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:58:10 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:58:17 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:59:25 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:59:36 helper.go:76: websocket: close sent
-ERROR 2020/04/30 16:59:38 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:01:22 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:02:38 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:02:49 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:03:23 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:03:33 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:03:37 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:04:36 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:04:51 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:05:11 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:05:20 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:05:51 helper.go:76: websocket: close sent
-WARNNIN 2020/04/30 17:07:23 helper.go:81: <nil> Failed to get cookie
-ERROR 2020/04/30 17:07:26 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:56331: use of closed network connection
-ERROR 2020/04/30 17:08:11 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:56514: use of closed network connection
-ERROR 2020/04/30 17:09:07 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:09:47 helper.go:76: websocket: close sent
-ERROR 2020/04/30 17:10:23 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:56641: use of closed network connection
-ERROR 2020/05/03 20:16:56 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:17:36 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:19:41 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:19:48 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:19:59 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:20:08 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:26:20 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:26:42 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:28:02 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:29:25 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:31:16 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:33:09 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:33:37 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:40:26 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:41:02 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:53:34 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:55:18 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:55:54 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:59:07 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:59:46 helper.go:76: websocket: close sent
-ERROR 2020/05/03 20:59:54 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:00:07 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:00:21 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:01:31 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:02:53 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:03:32 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:04:10 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:04:34 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:07:04 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:07:48 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:09:03 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:09:33 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:11:17 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:11:58 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:46:45 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:47:16 helper.go:76: websocket: close sent
-ERROR 2020/05/03 21:47:41 helper.go:76: http: no such file
-ERROR 2020/05/03 21:48:50 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:00:55 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:01:02 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:01:09 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:01:15 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:13:06 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:13:23 helper.go:76: open .public/resource/1588515203.png: no such file or directory
-ERROR 2020/05/03 22:13:48 helper.go:76: open .public/resource/1588515228.png: no such file or directory
-ERROR 2020/05/03 22:13:56 helper.go:76: open .public/resource/1588515236.png: no such file or directory
-ERROR 2020/05/03 22:13:56 helper.go:76: open .public/resource/1588515236.png: no such file or directory
-ERROR 2020/05/03 22:13:57 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:21:39 helper.go:76: http: no such file
-ERROR 2020/05/03 22:21:41 helper.go:76: http: no such file
-ERROR 2020/05/03 22:21:41 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:21:52 helper.go:76: http: no such file
-ERROR 2020/05/03 22:22:37 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:22:42 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:37:17 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:52:48 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:53:08 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:53:30 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:53:33 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:54:30 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:55:50 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:56:34 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:56:50 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:57:30 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:58:48 helper.go:76: websocket: close sent
-ERROR 2020/05/03 22:59:17 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:00:32 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:02:55 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:03:34 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:03:40 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:03:44 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:03:58 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:04:43 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:05:04 helper.go:76: websocket: close sent
-ERROR 2020/05/03 23:06:01 helper.go:76: websocket: close sent
-ERROR 2020/05/04 08:52:41 helper.go:76: websocket: close sent
-ERROR 2020/05/04 08:53:19 helper.go:76: websocket: close sent
-ERROR 2020/05/04 08:53:25 helper.go:76: websocket: close sent
-ERROR 2020/05/04 08:53:26 helper.go:76: websocket: close sent
-ERROR 2020/05/04 08:56:55 helper.go:76: websocket: close sent
-ERROR 2020/05/04 08:58:04 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:06:22 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:07:58 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:10:24 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:10:55 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:17:01 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:17:15 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:58705: use of closed network connection
-ERROR 2020/05/04 09:17:58 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:59279: use of closed network connection
-ERROR 2020/05/04 09:19:40 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:20:31 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:21:09 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:22:23 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:22:58 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:23:27 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:59485: use of closed network connection
-ERROR 2020/05/04 09:25:23 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:29:06 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:29:14 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:30:07 helper.go:76: http: no such file
-ERROR 2020/05/04 09:32:59 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:33:06 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:37:42 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:41:57 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:47:01 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:47:29 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:48:56 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:48:58 helper.go:76: http: no such file
-ERROR 2020/05/04 09:50:10 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:50:26 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:50:43 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:51:59 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:52:27 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:53:01 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:53:14 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:53:26 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:54:01 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:58:52 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:59:13 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:59:16 helper.go:76: http: no such file
-ERROR 2020/05/04 09:59:39 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:59:47 helper.go:76: websocket: close sent
-ERROR 2020/05/04 09:59:52 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:00:22 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:06:34 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:06:38 helper.go:76: http: no such file
-ERROR 2020/05/04 10:08:51 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:08:55 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:10:17 helper.go:76: http: no such file
-ERROR 2020/05/04 10:10:23 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:10:30 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:10:42 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:10:46 helper.go:76: http: no such file
-ERROR 2020/05/04 10:11:16 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:13:50 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:14:11 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:16:28 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:17:20 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:18:00 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:18:34 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:26:03 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:26:42 helper.go:76: open ./public/resource/1588559202.jpeg: no such file or directory
-ERROR 2020/05/04 10:26:43 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:26:55 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:26:59 helper.go:76: open ./public/resource/1588559219.jpg: no such file or directory
-ERROR 2020/05/04 10:27:59 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:28:13 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:28:22 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:29:42 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:02 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:10 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:25 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:30 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:36 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:42 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:47 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:30:53 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:06 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:14 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:24 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:29 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:35 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:42 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:31:54 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:32:02 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:32:07 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:32:12 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:32:18 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:32:24 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:32:58 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:33:01 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:33:33 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:33:37 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:33:48 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:34:07 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:34:25 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:34:53 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:35:09 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:35:26 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:35:36 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:35:53 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:37:07 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:37:08 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:37:16 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:37:33 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:37:43 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:37:47 helper.go:76: websocket: close sent
-ERROR 2020/05/04 10:39:53 helper.go:76: websocket: close sent
+ERROR 2020/05/05 11:40:27 helper.go:76: oss: service returned error: StatusCode=400, ErrorCode=InvalidObjectName, ErrorMessage="The specified object is not valid.", RequestId=5EB0E02B5CFD803531B4E89E
+ERROR 2020/05/05 11:55:10 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:22:36 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:23:32 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:24:41 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:26:06 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:27:58 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:28:13 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:29:06 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:30:07 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:33:15 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:33:54 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:34:06 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:34:26 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:34:58 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:36:01 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:37:23 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:40:25 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:42:32 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:43:00 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:44:53 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:47:35 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:48:09 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:48:18 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:49:07 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:50:28 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:50:44 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:51:20 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:51:42 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:52:20 helper.go:76: websocket: close sent
+ERROR 2020/05/05 14:53:16 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:06:42 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:10:29 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:11:18 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:32:21 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:34:05 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:34:05 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:62016: use of closed network connection
+ERROR 2020/05/05 15:34:32 helper.go:76: write tcp 127.0.0.1:8080->127.0.0.1:62373: use of closed network connection
+ERROR 2020/05/05 15:35:08 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:35:28 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:36:28 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:38:43 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:40:02 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:40:12 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:41:12 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:41:27 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:43:53 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:44:00 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:44:02 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:44:15 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:44:29 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:44:37 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:44:47 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:45:16 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:45:35 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:45:38 helper.go:76: http: no such file
+ERROR 2020/05/05 15:45:47 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:45:59 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:46:08 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:46:14 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:46:42 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:47:37 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:49:44 helper.go:76: open ./public/resource/1588664984.jpg: no such file or directory
+ERROR 2020/05/05 15:49:54 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:50:40 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:50:53 helper.go:76: open ./public/resource/1588665053.jpg: no such file or directory
+ERROR 2020/05/05 15:52:58 helper.go:76: open ./public/resource/1588665178.jpg: no such file or directory
+ERROR 2020/05/05 15:53:00 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:54:13 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:55:08 helper.go:76: http: no such file
+ERROR 2020/05/05 15:55:41 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:56:24 helper.go:76: websocket: close sent
+ERROR 2020/05/05 15:56:31 helper.go:76: http: no such file
+ERROR 2020/05/05 15:56:49 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:01:00 helper.go:76: http: no such file
+ERROR 2020/05/05 16:01:19 helper.go:76: http: no such file
+ERROR 2020/05/05 16:01:33 helper.go:76: http: no such file
+ERROR 2020/05/05 16:01:49 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:02:00 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:02:17 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:02:26 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:02:33 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:02:47 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:02:55 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:03:01 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:03:08 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:03:26 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:03:33 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:03:47 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:04:18 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:04:20 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:04:34 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:04:42 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:05:09 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:05:11 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:05:51 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:06:05 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:06:16 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:06:53 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:07:19 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:08:39 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:09:05 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:09:08 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:09:54 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:10:18 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:11:11 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:12:07 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:12:41 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:12:45 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:15:17 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:15:22 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:15:27 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:15:31 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:15:36 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:16:33 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:16:45 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:16:49 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:16:58 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:17:01 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:20:13 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:20:26 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:20:31 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:20:37 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:20:42 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:20:49 helper.go:76: websocket: close sent
+ERROR 2020/05/05 16:21:36 helper.go:76: websocket: close sent
