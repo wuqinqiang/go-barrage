@@ -20,13 +20,14 @@
 git clone https://github.com/wuqinqiang/go-barrage.git
 ```
 **修改运行环境**
-config.json 文件 ps:这种配置文件不应该提交到版本库中
+根目录下增加 config.json 文件 
 ```json
 {
   "App": {  //应用配置
     "Address": "0.0.0.0:8080", //服务地址
     "Static": "public",  //静态文件存放目录
-    "Log": "logs"     //日志目录
+    "Log": "logs",     //日志目录
+    "StaticPath": "http://127.0.0.1/static/"  //本地上传图片访问地址
   },
   "Db": {          //数据库配置
     "Driver": "mysql",
@@ -34,6 +35,14 @@ config.json 文件 ps:这种配置文件不应该提交到版本库中
     "Database": "chitchat",  //数据库名
     "User": "homestead",     //账户
     "Password": "secret"     //密码
+  },
+ "OSS": {
+//true表示默认图片上传至本地 false表示上传至阿里oss 自行配置Key
+    "IsSaveLocal": true, 
+    "AccessKeyID": "xxx",
+    "AccessKeySecret": "xxxx",
+    "Bucket": "xxx",
+    "BucketUrl": "xxx"
   }
 }
 ```
