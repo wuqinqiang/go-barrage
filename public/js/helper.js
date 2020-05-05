@@ -1,3 +1,5 @@
+
+var sendId = 0 //发送对象
 //客户端也处理一些xss
 function stripscript(s) {
     var pattern = new RegExp("[%--`~!@#$^&*()=|{}':;',\\.<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")        //格式 RegExp("[在中间定义特殊过滤字符]")

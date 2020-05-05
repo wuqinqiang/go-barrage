@@ -21,9 +21,18 @@ type Database struct {
 	Password    string
 }
 
+type Oss struct {
+	AccessKeyID string
+	AccessKeySecret string
+	Bucket string
+	BucketUrl string
+}
+
+
 type Configuration struct {
 	App App
 	Db  Database
+	Oss Oss
 }
 
 var config *Configuration
