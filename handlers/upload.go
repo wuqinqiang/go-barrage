@@ -54,13 +54,14 @@ func UploadFile(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
-	res, _ := json.Marshal(config.StaticPath + filePath)
+	config := config.LoadConfig()
+
+	res, _ := json.Marshal(config.App.StaticPath + filePath)
 	//如果配置是本地 那就本地文件
-	if config.FileLocal == true {
+	if config.Oss.IsSaveLocal == true {
 		io.WriteString(w, string(res))
 		return
 	}
-	config := config.LoadConfig()
 	//否则上传至oss
 	client, err := oss.New(config.Oss.BucketUrl, config.Oss.AccessKeyID, config.Oss.AccessKeySecret)
 	if err != nil {

@@ -8,26 +8,27 @@ import (
 )
 
 type App struct {
-	Address      string
-	Static       string
-	Log          string
+	Address   string
+	Static    string
+	Log       string
+	StaticPath string
 }
 
 type Database struct {
-	Driver      string
-	Address        string
-	Database    string
-	User        string
-	Password    string
+	Driver   string
+	Address  string
+	Database string
+	User     string
+	Password string
 }
 
 type Oss struct {
-	AccessKeyID string
+	AccessKeyID     string
 	AccessKeySecret string
-	Bucket string
-	BucketUrl string
+	Bucket          string
+	BucketUrl       string
+	IsSaveLocal       bool
 }
-
 
 type Configuration struct {
 	App App
