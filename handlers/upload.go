@@ -12,8 +12,6 @@ import (
 	"time"
 )
 
-var dateTime string = time.Now().UTC().Format(http.TimeFormat)
-
 func init() {
 	os.MkdirAll("./public/resource", os.ModePerm)
 }
@@ -24,7 +22,6 @@ func UploadFile(w http.ResponseWriter, r *http.Request) {
 	data, head, err := r.FormFile("img")
 	if err != nil {
 		danger(err.Error())
-		fmt.Println(22)
 		return
 	}
 	suffix := ".png"
