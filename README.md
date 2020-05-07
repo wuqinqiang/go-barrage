@@ -13,28 +13,22 @@
 +   用户名curry@qq.com 密码123456
 +   用户名test(1到9都行)@qq.com 密码123456
 
-### 安装
-
-**拉取项目**
-```php
-git clone https://github.com/wuqinqiang/go-barrage.git
-```
-**修改运行环境**
+### 增加配置
 根目录下增加 config.json 文件 
 ```json
 {
   "App": {  //应用配置
-    "Address": "0.0.0.0:8080", //服务地址
-    "Static": "public",  //静态文件存放目录
+    "Address": "0.0.0.0:8080", //服务地址 自行设置
+    "Static": "public",  //静态文件存放目录 
     "Log": "logs",     //日志目录
-    "StaticPath": "http://127.0.0.1/static/"  //本地上传图片访问地址
+    "StaticPath": "http://127.0.0.1/static/"  //本地上传图片访问地址 自行设置
   },
   "Db": {          //数据库配置
     "Driver": "mysql",
-    "Address": "192.168.10.10:3306",  //地址
-    "Database": "chitchat",  //数据库名
-    "User": "homestead",     //账户
-    "Password": "secret"     //密码
+    "Address": "192.168.10.10:3306",  //地址 自行设置
+    "Database": "chitchat",  //数据库名 自行设置
+    "User": "homestead",     //账户 自行设置
+    "Password": "secret"     //密码  自行设置
   },
  "OSS": {
 //true表示默认图片上传至本地 false表示上传至阿里oss 自行配置Key
