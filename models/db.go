@@ -6,7 +6,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
-	."github.com/wuqinqiang/chitchat/config"
+	. "github.com/wuqinqiang/chitchat/config"
 	"log"
 )
 

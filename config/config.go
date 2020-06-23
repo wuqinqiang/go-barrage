@@ -41,6 +41,7 @@ var once sync.Once
 
 // 通过单例模式初始化全局配置
 func LoadConfig() *Configuration {
+	//全局值加载一次 底层是通过互斥锁加原子性实现的，可以自行查看代码
 	once.Do(func() {
 		file, err := os.Open("config.json")
 		if err != nil {
